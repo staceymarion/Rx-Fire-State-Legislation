@@ -7,12 +7,11 @@
     1. Highlight sails and barriers to effective application of fire on the ground; use data to propose better legislation in Wisconsin.
     2. Re-perform the 2014 fire needs assessment using updated landfire data - use to visualize priority areas for prescribed burning
 2. Requirements Document
-
 3. Wireframes
 
 ### **Dependencies:**
-* [JQuery 3.6.0](https://jquery.com/)
-* add d3 library
+* [JQuery 3.5.1](https://jquery.com/)
+* [D3 6.6.0](https://d3js.org/)
 
 ### **Code Version:**
 Last Updated: 15 March, 2021
