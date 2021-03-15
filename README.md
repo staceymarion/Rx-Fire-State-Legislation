@@ -18,4 +18,4 @@
 Last Updated: 15 March, 2021
 
 ### **Description:**
-This interactive proportional symbol map, built using Leaflet, demonstrates the fire legislation in various cities across the U.S.
+This interactive proportional symbol map, built using D3, demonstrates the fire legislation in various cities across the U.S.
