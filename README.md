@@ -1,16 +1,16 @@
-### **Title:** *Number of Cartographers by U.S. City*
+### **Title:** *Rx-Fire-State-Legislation*
 
-### **Author:** Lambert Molleweide
+### **Author:** Stacey Marion, Josh Riebe, Theodore Nguyen
 
 ### **Dependencies:**
 * [JQuery 3.6.0](https://jquery.com/)
 * [Leaflet 1.6](https://leafletjs.com/reference-1.6.0.html)
 
 ### **Code Version:**
-Last Updated: 7 March, 2021
+Last Updated: 15 March, 2021
 
 ### **Description:**
-This interactive proportional symbol map, built using Leaflet, demonstrates the growth of cartographers by major U.S. city from 2010 to 2020.
+This interactive proportional symbol map, built using Leaflet, demonstrates the fire legislation in various cities across the U.S.
 
 # Team Name
 
