@@ -10,10 +10,6 @@
 
 3. Wireframes
 
-### **Title:** *Rx-Fire-State-Legislation*
-
-### **Author:** Stacey Marion, Josh Riebe, Theodore Nguyen
-
 ### **Dependencies:**
 * [JQuery 3.6.0](https://jquery.com/)
 * add d3 library
