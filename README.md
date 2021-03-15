@@ -4,7 +4,7 @@
 
 ### **Dependencies:**
 * [JQuery 3.6.0](https://jquery.com/)
-* [Leaflet 1.6](https://leafletjs.com/reference-1.6.0.html)
+* add d3 library
 
 ### **Code Version:**
 Last Updated: 15 March, 2021
