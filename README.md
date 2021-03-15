@@ -4,10 +4,12 @@
 
 ### Final Proposal
 1. Main Objective
-    1. Highlight sails and barriers to effective application of fire on the ground; use data to propose better legislation in Wisconsin.
-    2. Re-perform the 2014 fire needs assessment using updated landfire data - use to visualize priority areas for prescribed burning
+    1. Visualize disparities among US states with respect to prescribed fire-related laws, permitting systems, insurance liabilty, and certification programs. 
+    2. Create insights about the sails and barriers to effective application of prescribed fire.
+    3. Use data to inform discussion about proposed legislative changes in Wisconsin. Use data to support proposed changes.
 2. Requirements Document
 3. Wireframes
+    1. TBD
 
 ### **Dependencies:**
 * [JQuery 3.5.1](https://jquery.com/)
@@ -17,5 +19,5 @@
 Last Updated: 15 March, 2021
 
 ### **Description:**
-This interactive proportional symbol map, built using D3, demonstrates the fire legislation in various cities across the U.S.
+Our interactive map series will investigate State disparities in prescribed fire outcomes (acreage burned, etc) as relates to State law, permitting, and certification programs. Prior static maps exist for data circa 2018, however, these maps are difficult to access within a PDF report and do not allow a reader to make comprehensive insights about patterns of prescribed fire implementation related to multiple State-specific legislature and administrative factors.
 
