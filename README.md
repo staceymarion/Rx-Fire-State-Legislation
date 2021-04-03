@@ -1,5 +1,5 @@
 # *Rx-Fire-State-Legislation*
-By: Stacey Marion, Josh Riebe, Theodore Nguyen
+### By: Stacey Marion, Josh Riebe, Theodore Nguyen
 
 ## Final Project Proposal
 
