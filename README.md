@@ -1,9 +1,9 @@
 # Team Name: *Rx-Fire-State-Legislation*
 
-### Team Members: 
+### Team Members
 Stacey Marion, Josh Riebe, Theodore Nguyen
 
-### FINAL PROJECT PROPOSAL:
+## Final Project Proposal
 
 1. Persona/Scenario
 
@@ -41,13 +41,13 @@ Keywords: #expert #repeat-user #high-domain-knowledge #speed-of-use #compare #ra
 
 3. Wireframes
 
-### **Dependencies:**
+## **Dependencies:**
 * [JQuery 3.5.1](https://jquery.com/)
 * [D3 6.6.0](https://d3js.org/)
 
-### **Code Version:**
+## **Code Version:**
 Last Updated: 2 April, 2021
 
-### **Description:**
+## **Description:**
 This interactive proportional symbol map, built using D3, demonstrates the fire legislation in various cities across the U.S.
 
