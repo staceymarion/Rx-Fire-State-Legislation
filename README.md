@@ -80,7 +80,7 @@ Keywords: #expert #repeat-user #high-domain-knowledge #speed-of-use #compare #ra
 | Share | Create a .json file to share the map at its current modifications. | Export: Location & attributes |
 
 3. Wireframes
-![alt text](https://i.imgur.com/WnKBZ3K.jpeg)
+![alt text](https://i.imgur.com/WnKBZ3K.jpeg | 250x250)
 
 ## **Dependencies:**
 * [JQuery 3.5.1](https://jquery.com/)
