@@ -1,8 +1,9 @@
 # Team Name: *Rx-Fire-State-Legislation*
 
-### Team Members: Stacey Marion, Josh Riebe, Theodore Nguyen
+### Team Members: 
+Stacey Marion, Josh Riebe, Theodore Nguyen
 
-### Final Project Proposal
+### Final Project Proposal:
 
 1. Persona/Scenario
 
