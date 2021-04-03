@@ -35,11 +35,11 @@ Keywords: #expert #repeat-user #high-domain-knowledge #speed-of-use #compare #ra
 
 2. Requirements Document
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| Layer         | Source           | Proposed Symbolization  | 
+| ------------- |:----------------:| -----------------------:|
+| col 3 is      | right-aligned    | $1600                   |
+| col 2 is      | centered         |   $12                   |
+| zebra stripes | are neat         |    $1                   |
 
 
 
