@@ -1,7 +1,5 @@
-# Team Name: *Rx-Fire-State-Legislation*
-
-### Team Members
-Stacey Marion, Josh Riebe, Theodore Nguyen
+# *Rx-Fire-State-Legislation*
+By: Stacey Marion, Josh Riebe, Theodore Nguyen
 
 ## Final Project Proposal
 
