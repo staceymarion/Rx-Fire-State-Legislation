@@ -35,13 +35,27 @@ Keywords: #expert #repeat-user #high-domain-knowledge #speed-of-use #compare #ra
 
 2. Requirements Document
 
-| Layer         | Source           | Proposed Symbolization  | 
+| Layer         | Source           | Proposed Symbolization  |
 | ------------- |:----------------:| -----------------------:|
-| col 3 is      | right-aligned    | $1600                   |
-| col 2 is      | centered         |   $12                   |
-| zebra stripes | are neat         |    $1                   |
-
-
+| Basemap | US states, Natural Earth | Generalized state boundary outlines. Adapt for different maps |
+| Legend | 2020 National Rx Fire Report | Text content |
+| State Fire Councils | 2020 National Rx Fire Report | Choropleth - nominal. + Text context/popup content as link |
+| State Certified Burn Programs | 2020 National Rx Fire Report | Choropleth - nominal |
+| Acres Burned Per State | 2020 National Rx Fire Report | Proportional symbol |
+| State Burn Permit Requirements | 2020 National Rx Fire Report | Choropleth - nominal |
+| State Burn Authorization Time | 2020 National Rx Fire Report | Choropleth - nominal |
+| Rx Fire Trends | 2020 National Rx Fire Report | Choropleth - nominal |
+| State Liability Law | 2020 National Rx Fire Report | Choropleth - nominal |
+| Regional Summaries | 2020 National Rx Fire Report | Choropleth - nominal |
+| State Rx Fire Legislation | Multiple. Internal: WhatOtherStatesAreDoing.wordx | Text context or popup content |
+| State Fire Dashboards | Multiple. Internal: WhatOtherStatesAreDoing.wordx | Text context or popup content as link |
+| Fire Regime | LANDFIRE | Overlay |
+| Wildfire Potential? | TBD | N/A |
+| State Budget | https://www.stateforesters.org/ | N/A |
+| Fire Risk (Actuarial Data) | Mitchell and XX 2006 https://prescribedfire.org/wp-content/uploads/2018/02/WIPFC-LiabilityLetter.pdf | N/A |
+| New Legislation | TBD | Symbol or highlight  for new legislation (within 1 or 2 years?); provide link to law or brief on law update |
+| Report Card Grade | Develop scoring systems | Panel |
+| Case Study | Consider having a pre-made case study | Create pre-guided case study using sequenced pop-ups |
 
 3. Wireframes
 
