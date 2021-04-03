@@ -64,14 +64,14 @@ Keywords: #expert #repeat-user #high-domain-knowledge #speed-of-use #compare #ra
 
 | Name          | Description      | Operator                |
 | ------------- |:----------------:| -----------------------:|
-| State Hover | Hover over a state to trigger a popup with the state name and its associated attributes. | Retrieve: Objects. |
-| Attribute (Accordion) Menu | Vertical side panel serves as tabs for maps with a single attribute. | Resymbolize: Attributes. |
-| Query Panel | Modify the prepopulated parameters displayed on the map to reveal only states with specified number of fire legislations. | Filter: Location. |
-| Results Panel | Display results from the query panel on the states which match the users' criterion. | Sequence: Objects. |
-| Compare | Comparison tool allows qualitative visualization of varying states of interest, i.e., comparing to states with more burning. Visualization utilizing a side-by-side panel represents each state with a number of key attributes, which can be ranked. | Filter, Retrieve: Objects. |
-| Timeline | Scroll through different years to receive information on the year in which fire legislations were created by state. | Sequence: Objects. |
-| Magnify In/Out | Scroll in or out on the map to focus on a specific region to a greater scale. | Zoom: Objects. |
-| Share | Create a .json file to share the map at its current modifications. | Export: Location & attributes. |
+| State Hover | Hover over a state to trigger a popup with the state name and its associated attributes. | Retrieve: Objects |
+| Attribute (Accordion) Menu | Vertical side panel serves as tabs for maps with a single attribute. | Resymbolize: Attributes |
+| Query Panel | Modify the prepopulated parameters displayed on the map to reveal only states with specified number of fire legislations. | Filter: Location |
+| Results Panel | Display results from the query panel on the states which match the users' criterion. | Sequence: Objects |
+| Compare | Comparison tool allows qualitative visualization of varying states of interest, i.e., comparing to states with more burning. Visualization utilizing a side-by-side panel represents each state with a number of key attributes, which can be ranked. | Filter, Retrieve: Objects |
+| Timeline | Scroll through different years to receive information on the year in which fire legislations were created by state. | Sequence: Objects |
+| Magnify In/Out | Scroll in or out on the map to focus on a specific region to a greater scale. | Zoom: Objects |
+| Share | Create a .json file to share the map at its current modifications. | Export: Location & attributes |
 
 3. Wireframes
 
