@@ -59,7 +59,6 @@ Keywords: #expert #repeat-user #high-domain-knowledge #speed-of-use #compare #ra
 | Report Card Grade | Develop scoring systems | Panel |
 | Case Study | Consider having a pre-made case study | Create pre-guided case study using sequenced pop-ups |
 
-
 ### Interaction
 
 | Name          | Description      | Operator                |
@@ -83,5 +82,5 @@ Keywords: #expert #repeat-user #high-domain-knowledge #speed-of-use #compare #ra
 Last Updated: 2 April, 2021
 
 ## **Description:**
-This interactive proportional symbol map, built using D3, demonstrates the fire legislation in various cities across the U.S.
+This interactive choropleth and proportional symbol map, built using D3 and JQuery, demonstrates the fire legislation in various cities across the U.S.
 
