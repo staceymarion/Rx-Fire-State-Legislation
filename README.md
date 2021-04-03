@@ -15,7 +15,7 @@ Sharp’s client recommends that he look for guidance from the Wisconsin Prescri
 
 Reference: https://prescribedfire.org/wp-content/uploads/2018/02/WIPFC-LiabilityLetter.pdf (2006)
 
-Keywords: **#compare #rank #associate #insight #context #menu-selection #identify #filter #qualitative-assessment #presentation, #exploration #low-domain-knowledge #tech-skills-unknown**
+Keywords: #compare #rank #associate #insight #context #menu-selection #identify #filter #qualitative-assessment #presentation, #exploration #low-domain-knowledge #tech-skills-unknown
 
 
 **Persona 2: State representative, policymaker**
@@ -26,7 +26,7 @@ A member of the Wisconsin Prescribed Fire Council requests an audience with Repr
 
 Representative Youngton first wants to **#identify** what burn legislation is in question. Upon looking at the overview map, she notices that Wisconsin has a report card of C, whereas nearby states like Illinois and Michigan have report card grades of A. Curious about why Wisconsin **#ranks** poorly, she uses the **#compare** tool, to compare Wisconsin to a few nearby states who rank better. She scans over the limited number of attributes in the comparison panels and notices that Minnesota accomplishes nearly twice as much burning as Wisconsin and **#associates** the amount of accomplished burning with one key difference in legislation compared to Wisconsin: Minnesota has a state-certified burn program. Curious about this association, she navigates to the layer menu selection “State burn certification programs”. The map refreshes to show a categorial choropleth map showing states with or without a burn certification program, overlaid with proportional symbols representing prescribed burn acres. Youngton notices a **#trend** that states with burn certification programs generally accomplish more burning. She makes note of this finding as she readies herself for her upcoming meeting. 
 
-Keywords: **#presentation #compare #rank #associate #trend #identify #entry-level #low-motivation #limited-time-investment**
+Keywords: #presentation #compare #rank #associate #trend #identify #entry-level #low-motivation #limited-time-investment
 
 
 **Persona 3: Wisconsin Prescribed Fire Council Legislative Committee member, policy advocate**
@@ -37,7 +37,7 @@ The higher-level goal of the legislative committee is to engage with lawmakers t
 
 A Fire Council member has requested an audience with a State Representative and wants to brush up on her knowledge of discrepancies in state burn legislation, liability, and certification programs. As she opens the interactive map, the overview shows the entire US map (choropleth) with report card grades and annual acreage burned (proportional symbol). With her primary objective to refresh her memory of Wisconsin’s burn-related laws, she clicks on the state of Wisconsin to **#retrieve** state-specific attributes. She recalls that within the retrieval panel/pop-up, there are links to supplemental information about each current law and the Fire Council’s proposed changes. She clicks on the link to open a new browser where she quickly refreshes her memory. After accomplishing her initial info-seeking task, she then settles down to explore some of the attributes she is less familiar with, hoping to gain novel insight that she can share for her upcoming meeting with Representative Youngton. She is curious about the establishment of certified burn programs. She navigates to the “State-certified burn program” layer menu item and clicks the down arrow to expand an accordion menu revealing several year ranges: “Within last 1 year”, “Established 2-5 years ago”, “Established 5-10 years ago”, and “Established > 10 years ago”. She clicks each layer checkbox to reveal all 4 layers, categorized by different colors. She notices some **#patterns** such as the South establishing burn programs much earlier than the West Coast or Midwest. Interestingly, Minnesota, Illinois, and Michigan all established certified burn programs within the last 5 years. She clicks on Illinois to **#retrieve** additional information and follow a link in the Illinois pop-up to the Illinois Prescribed Fire Council webpage on the state’s new burn certification program. 
 
-Keywords: **#expert #repeat-user #high-domain-knowledge #speed-of-use #compare #rank #associate #insight #context #menu-selection #identify #filter #high-motivation #high-map-reading-skill**
+Keywords: #expert #repeat-user #high-domain-knowledge #speed-of-use #compare #rank #associate #insight #context #menu-selection #identify #filter #high-motivation #high-map-reading-skill
 
 
 ## Requirements Document
