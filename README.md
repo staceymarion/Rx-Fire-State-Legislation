@@ -3,7 +3,7 @@
 ### Team Members: 
 Stacey Marion, Josh Riebe, Theodore Nguyen
 
-### Final Project Proposal:
+### FINAL PROJECT PROPOSAL:
 
 1. Persona/Scenario
 
