@@ -77,7 +77,7 @@ Keywords: #expert #repeat-user #high-domain-knowledge #speed-of-use #compare #ra
 | Compare | Comparison tool allows qualitative visualization of varying states of interest, i.e., comparing to states with more burning. Visualization utilizing a side-by-side panel represents each state with a number of key attributes, which can be ranked. | Filter, Retrieve: Objects |
 | Timeline | Scroll through different years to receive information on the year in which fire legislations were created by state. | Sequence: Objects |
 | Magnify In/Out | Scroll in or out on the map to focus on a specific region to a greater scale. | Zoom: Objects |
-| Share | Create a .json file to share the map at its current modifications. | Export: Location & attributes |
+| Share | Create a URL to share the map at its current modifications, which can be copied manually by the user. | Export: Location & attributes |
 
 3. Wireframes
 
