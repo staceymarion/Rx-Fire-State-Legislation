@@ -57,10 +57,8 @@ Keywords/concepts: #expert #repeat-user #high-domain-knowledge #speed-of-use #co
 
 3. Wireframes
 
-Host image url on imgur
-
-<img src="https://i.imgur.com/WnKBZ3K.jpeg" width="250" height="250">
 <img src="https://i.imgur.com/EdjUFr8.jpg" width="1024" height="768">
+
 <img src="https://i.imgur.com/mknDTQS.jpg" width="1024" height="768">
 
 ## **Dependencies:**
