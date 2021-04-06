@@ -60,8 +60,8 @@ Keywords/concepts: #expert #repeat-user #high-domain-knowledge #speed-of-use #co
 Host image url on imgur
 
 <img src="https://i.imgur.com/WnKBZ3K.jpeg" width="250" height="250">
-<img src="https://i.imgur.com/EdjUFr8.jpg" width="250" height="250">
-<img src="https://i.imgur.com/mknDTQS.jpg" width="250" height="250">
+<img src="https://i.imgur.com/EdjUFr8.jpg" width="1000" height="500">
+<img src="https://i.imgur.com/mknDTQS.jpg" width="500" height="500">
 
 ## **Dependencies:**
 * [JQuery 3.5.1](https://jquery.com/)
