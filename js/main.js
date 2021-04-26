@@ -16,7 +16,6 @@ function setMap(){
     var projection = d3.geoAlbersUsa()
         .scale(900);
         
-
     var path = d3.geoPath()
         .projection(projection);
 
