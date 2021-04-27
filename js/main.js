@@ -33,19 +33,27 @@ function setMap(){
     Promise.all(promises).then(callback); 
 
     function callback(data){
-        var csv1 = data[0], csv2 = data[1], csv3 = data[2], csv4 = data[3], csv5 = data[4], csv6 = data[5], csv7 = data[6], csv8 = data[7], usa = data[8];
-        
-        var americanStates = topojson.feature(usa, usa.objects.usaStates).features;
+        csv1 = data[0]; 
+        csv2 = data[1];
+        csv3 = data[2];
+        csv4 = data[3];
+        csv5 = data[4];
+        csv6 = data[5];
+        csv7 = data[6];
+        csv8 = data[7];
+        usa = data[8];
 
+        var americanStates = topojson.feature(usa, usa.objects.usaStates).features;
+        
         var csvArray = [csv1, csv2, csv3, csv4, csv5, csv6, csv7, csv8];
 
-        var attrArray = ["acresBurned", "applicationFee", "authorizationTime", "burnPrograms", "fireTrends", "liabilityLaw", "permitRequirements", "stateFireCouncil"];
+        var attrArray = ["Acres Burned", "Permit Application Fee", "Time to Obtain Permit", "State-Certified Burn Program", "Trend Direction", "State Liability Law", "Permit Requirement", "State Fire Council"];
 
         for (csv in csvArray){
-            joinData(usa, csvArray[csv], attrArray[csv]);
+            joinData(usa, csvArray[csv]);
         };
 
-        function joinData(usa, csvData, attribute){
+        function joinData(usa, csvData){
             //loop through csv to assign each set of csv attribute values to geojson country
             for (var i = 0; i < csvData.length; i++){
                 var csvRegion = csvData[i]; //the current state
@@ -64,16 +72,16 @@ function setMap(){
                             var val = csvRegion[attr]; //get csv attribute value
                             console.log(attr);
                             geojsonProps[attr] = val; //assign attribute and value to geojson properties
-                            
+                            console.log(geojsonProps);
                         });
                     };
                 };
             };
             
-            //returns joined data for implementation
-            /* return americanStates; */
+            /* //returns joined data for implementation
+            return americanStates; */
         };
-
+ 
 
 
         var states = map.selectAll(".states")
