@@ -53,7 +53,7 @@ function setMap(){
             
                 //loop through geojson westAfricaCountries to find correct country
                 for (var a = 0; a < americanStates.length; a++){
-                    var geojsonProps = americanStates[a].properties; //the current country geojson properties
+                    var geojsonProps = americanStates[a].properties; //the current state geojson properties
                     var geojsonKey = geojsonProps.name; //the geojson primary key
                     
                     //where primary keys match, transfer csv data to geojson properties object
@@ -62,7 +62,7 @@ function setMap(){
                         //assign all attributes and values
                         attrArray.forEach(function(attr){
                             var val = csvRegion[attr]; //get csv attribute value
-                            console.log(csvRegion[attr]);
+                            console.log(attr);
                             geojsonProps[attr] = val; //assign attribute and value to geojson properties
                             
                         });
