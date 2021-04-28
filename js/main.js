@@ -1,4 +1,20 @@
-//insert code here!
+
+var attrArray = ["Acres Burned", 
+                 "Permit Application Fee", 
+                 "Time to Obtain Permit", 
+                 "State-Certified Burn Program", 
+                 "Trend Direction", 
+                 "State Liability Law", 
+                 "Permit Requirement", 
+                 "State Fire Council",
+                ];
+
+var expressed = attrArray[0];
+var categories;
+
+//global variable
+var colorClasses = ["#b3cde0", "#6497b1", "#005b96", "#03396c", "#011f4b"];
+
 window.onload = setMap();
 
 //set up choropleth map
@@ -7,17 +23,18 @@ function setMap(){
     var width = 900,
         height = 500;
     
-    var map = d3.select("body")
+    var map = d3
+        .select("body")
         .append("svg")
         .attr("class", "map")
         .attr("width", width)
         .attr("height", height);
 
-    var projection = d3.geoAlbersUsa()
-        .scale(900);
+    var projection = d3
+        .geoAlbersUsa()
+        .scale(1000);
         
-    var path = d3.geoPath()
-        .projection(projection);
+    var path = d3.geoPath().projection(projection);
 
     //use Promise.all to parallelize asynchronous data loading
     var promises = [d3.csv("data/acres_burned.csv"),
@@ -28,32 +45,38 @@ function setMap(){
                     d3.csv("data/liability_law.csv"),
                     d3.csv("data/permit_requirements.csv"),
                     d3.csv("data/state_fire_council.csv"),
-                    d3.json("data/usaStates.topojson")                                
+                    d3.json("data/usaStates.topojson"),                                
                     ];    
     Promise.all(promises).then(callback); 
 
     function callback(data){
-        csv1 = data[0]; 
-        csv2 = data[1];
-        csv3 = data[2];
-        csv4 = data[3];
-        csv5 = data[4];
-        csv6 = data[5];
-        csv7 = data[6];
-        csv8 = data[7];
-        usa = data[8];
-
+        var csv1 = data[0], 
+            csv2 = data[1], 
+            csv3 = data[2], 
+            csv4 = data[3], 
+            csv5 = data[4], 
+            csv6 = data[5], 
+            csv7 = data[6], 
+            csv8 = data[7], 
+            usa = data[8];
+      
+        setGraticule(map, path);
+      
+        for (var i = 0; i < usa.objects.usaStates.geometries.length; i++) {
+                var prop = usa.objects.usaStates.geometries[i].properties;
+                var id_code = usa.objects.usaStates.geometries[i].id_code;
+                prop["id_code"] = id_code;
+            }
+      
         var americanStates = topojson.feature(usa, usa.objects.usaStates).features;
-        
-        var csvArray = [csv1, csv2, csv3, csv4, csv5, csv6, csv7, csv8];
 
-        var attrArray = ["Acres Burned", "Permit Application Fee", "Time to Obtain Permit", "State-Certified Burn Program", "Trend Direction", "State Liability Law", "Permit Requirement", "State Fire Council"];
+        var csvArray = [csv1, csv2, csv3, csv4, csv5, csv6, csv7, csv8];
 
         for (csv in csvArray){
             joinData(usa, csvArray[csv]);
         };
-
-        function joinData(usa, csvData){
+        
+            function joinData(usa, csvData){
             //loop through csv to assign each set of csv attribute values to geojson country
             for (var i = 0; i < csvData.length; i++){
                 var csvRegion = csvData[i]; //the current state
@@ -61,7 +84,7 @@ function setMap(){
             
                 //loop through geojson westAfricaCountries to find correct country
                 for (var a = 0; a < americanStates.length; a++){
-                    var geojsonProps = americanStates[a].properties; //the current state geojson properties
+                    var geojsonProps = americanStates[a].properties; //the current country geojson properties
                     var geojsonKey = geojsonProps.name; //the geojson primary key
                     
                     //where primary keys match, transfer csv data to geojson properties object
@@ -70,20 +93,18 @@ function setMap(){
                         //assign all attributes and values
                         attrArray.forEach(function(attr){
                             var val = csvRegion[attr]; //get csv attribute value
-                            console.log(attr);
+                            console.log(csvRegion[attr]);
                             geojsonProps[attr] = val; //assign attribute and value to geojson properties
-                            console.log(geojsonProps);
+                            
                         });
                     };
                 };
             };
             
-            /* //returns joined data for implementation
-            return americanStates; */
+            //returns joined data for implementation
+            return americanStates;
         };
- 
-
-
+  
         var states = map.selectAll(".states")
             .data(americanStates)
             .enter()
@@ -93,7 +114,81 @@ function setMap(){
             })
             .attr("d", path);
     };
+  
+    //create graticule generator
+    function setGraticule(map, path) {
+        var graticule = d3.geoGraticule().step([5, 5]); //place graticule lines every 5 degrees of longitude and latitude
 
+        //create graticule background
+        var gratBackground = map
+            .append("path")
+            .datum(graticule.outline()) //bind graticule background
+            .attr("class", "gratBackground") //assign class for styling
+            .attr("d", path); //project graticule
+
+        //create graticule lines
+        var gratLines = map
+            .selectAll(".gratLines") //select graticule elements that will be created
+            .data(graticule.lines()) //bind graticule lines to each element to be created
+            .enter() //create an element for each datum
+            .append("path") //append each element to the svg as a path element
+            .attr("class", "gratLines") //assign class for styling
+            .attr("d", path); //project graticule lines
+    }  
+  
+    //function to create color scale generator
+    function makeColorScale(data) {
+
+        //create color scale generator
+        var colorScale = d3.scaleThreshold().range(colorClasses);
+
+        //build array of all values of the expressed attribute
+        var domainArray = [];
+        for (var i = 0; i < data.length; i++) {
+            var val = parseFloat(data[i][expressed]);
+            domainArray.push(val);
+        }
+
+        //cluster data using ckmeans clustering algorithm to create natural breaks
+        var clusters = ss.ckmeans(domainArray, 5);
+        //reset domain array to cluster minimums
+       
+        domainArray = clusters.map(function (d) {
+            return d3.min(d);
+        });
+
+        //remove first value from domain array to create class breakpoints
+        domainArray.shift();
+
+        //assign array of last 4 cluster minimums as domain
+        colorScale.domain(domainArray);
+        return colorScale;
+    }
+  
+    function setEnumerationUnits(usa, map, path, colorScale) {
+        //add Spain regions to map
+        var regions = map
+            .selectAll(".regions")
+            .data(usa)
+            .enter()
+            .append("path")
+            .attr("class", function (d) {
+                return "regions " + d.properties.id_code;
+            })
+            .attr("d", path)
+            .style("fill", function (d) {
+                var value = d.properties[expressed];
+                if (value) {
+                    return colorScale(d.properties[expressed]);
+                } else {
+                    return "#ccc";
+                }
+             })
+
+        var desc = regions.append("desc")
+        .text('{"stroke": "#000", "stroke-width": "0.5px"}');
+    }
+    
     $(function() {
     var Accordion = function(el, multiple) {
     this.el = el || {};
@@ -102,25 +197,26 @@ function setMap(){
 
     var dropdownlink = this.el.find('.dropdownlink');
     dropdownlink.on('click',
-                    { el: this.el, multiple: this.multiple },
-                    this.dropdown);
+    { el: this.el, multiple: this.multiple },
+    this.dropdown);
     };
 
     Accordion.prototype.dropdown = function(e) {
     var $el = e.data.el,
-        $this = $(this),
-        //this is the ul.submenuItems
-        $next = $this.next();
+    $this = $(this),
+    //this is the ul.submenuItems
+    $next = $this.next();
 
     $next.slideToggle();
     $this.parent().toggleClass('open');
 
     if(!e.data.multiple) {
-      //show only one menu at the same time
-      $el.find('.submenuItems').not($next).slideUp().parent().removeClass('open');
+    //show only one menu at the same time
+    $el.find('.submenuItems').not($next).slideUp().parent().removeClass('open');
     }
     }
 
     var accordion = new Accordion($('.accordion-menu'), false);
     })
+    
 };
