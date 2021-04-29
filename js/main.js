@@ -60,14 +60,19 @@ function setMap(){
             csv8 = data[7], 
             usa = data[8];
       
-        setGraticule(map, path);
-      
-        for (var i = 0; i < usa.objects.usaStates.geometries.length; i++) {
+        
+        // This code isn't doing anything. The id_code comes out as undefined, 
+        // as the properties of the TopoJSON only have "name" included in them 
+        // and we don't have some array that we are pulling ID numbers from.
+
+        /* for (var i = 0; i < usa.objects.usaStates.geometries.length; i++) {
                 var prop = usa.objects.usaStates.geometries[i].properties;
+                console.log(prop);
                 var id_code = usa.objects.usaStates.geometries[i].id_code;
                 prop["id_code"] = id_code;
-            }
-      
+            }; */
+             
+
         var americanStates = topojson.feature(usa, usa.objects.usaStates).features;
 
         var csvArray = [csv1, csv2, csv3, csv4, csv5, csv6, csv7, csv8];
@@ -102,7 +107,7 @@ function setMap(){
             };
             
             //returns joined data for implementation
-            return americanStates;
+            /* return americanStates; */
         };
   
         var states = map.selectAll(".states")
@@ -114,28 +119,7 @@ function setMap(){
             })
             .attr("d", path);
     };
-  
-    //create graticule generator
-    function setGraticule(map, path) {
-        var graticule = d3.geoGraticule().step([5, 5]); //place graticule lines every 5 degrees of longitude and latitude
 
-        //create graticule background
-        var gratBackground = map
-            .append("path")
-            .datum(graticule.outline()) //bind graticule background
-            .attr("class", "gratBackground") //assign class for styling
-            .attr("d", path); //project graticule
-
-        //create graticule lines
-        var gratLines = map
-            .selectAll(".gratLines") //select graticule elements that will be created
-            .data(graticule.lines()) //bind graticule lines to each element to be created
-            .enter() //create an element for each datum
-            .append("path") //append each element to the svg as a path element
-            .attr("class", "gratLines") //assign class for styling
-            .attr("d", path); //project graticule lines
-    }  
-  
     //function to create color scale generator
     function makeColorScale(data) {
 
