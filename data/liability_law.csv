@@ -1,51 +1,51 @@
-State,State Liability Law
-Alabama,Simple Negligence
-Alaska,Strict Liability
-Arizona,Simple Negligence
-Arkansas,Simple Negligence
-California,Strict Liability
-Colorado,Gross Negligence
-Connecticut,No Law
-Delaware,Simple Negligence
-Florida,Gross Negligence
-Georgia,Gross Negligence
-Hawaii,Strict Liability
-Idaho,Simple Negligence
-Illinois,Simple Negligence
-Indiana,Simple Negligence
-Iowa,Strict Liability
-Kansas,Simple Negligence
-Kentucky,Simple Negligence
-Louisiana,Simple Negligence
-Maine,Strict Liability
-Maryland,Simple Negligence
-Massachusetts,No Law
-Michigan,Gross Negligence
-Minnesota,Strict Liability
-Mississippi,Simple Negligence
-Missouri,No Law
-Montana,Gross Negligence
-Nebraska,Strict Liability
-Nevada,Gross Negligence
-New Hampshire,Simple Negligence
-New Jersey,Simple Negligence
-New Mexico,Simple Negligence
-New York,Strict Liability
-North Carolina,Simple Negligence
-North Dakota,Strict Liability
-Ohio,Simple Negligence
-Oklahoma,Simple Negligence
-Oregon,Simple Negligence
-Pennsylvania,Simple Negligence
-Rhode Island,No Law
-South Carolina,Gross Negligence
-South Dakota,Strict Liability
-Tennessee,Simple Negligence
-Texas,Simple Negligence
-Utah,Simple Negligence
-Vermont,No Law
-Virginia,Simple Negligence
-Washington,Simple Negligence
-West Virginia,Simple Negligence
-Wisconsin,Strict Liability
-Wyoming,Strict Liability
+State,LiabilityLaw
+Alabama,2
+Alaska,1
+Arizona,2
+Arkansas,2
+California,1
+Colorado,3
+Connecticut,4
+Delaware,2
+Florida,3
+Georgia,3
+Hawaii,1
+Idaho,2
+Illinois,2
+Indiana,2
+Iowa,1
+Kansas,2
+Kentucky,2
+Louisiana,2
+Maine,1
+Maryland,2
+Massachusetts,4
+Michigan,3
+Minnesota,1
+Mississippi,2
+Missouri,4
+Montana,3
+Nebraska,1
+Nevada,3
+New Hampshire,2
+New Jersey,2
+New Mexico,2
+New York,1
+North Carolina,2
+North Dakota,1
+Ohio,2
+Oklahoma,2
+Oregon,2
+Pennsylvania,2
+Rhode Island,4
+South Carolina,3
+South Dakota,1
+Tennessee,2
+Texas,2
+Utah,2
+Vermont,4
+Virginia,2
+Washington,2
+West Virginia,2
+Wisconsin,1
+Wyoming,1

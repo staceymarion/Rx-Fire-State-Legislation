@@ -1,9 +1,9 @@
-State,State Fire Council,Name,Link
+State,FireCouncil,fcName,Link
 Alabama,Yes,Alabama Prescribed Fire Council,http://www.alpfc.org/
 Alaska,No,,
 Arizona,Yes,,
 Arkansas,Yes,Arkansas Prescribed Fire Council,https://www.facebook.com/ArPrescribedFireCouncil/
-California,Yes (regional),"Central Coast Rx Fire Council,
+California,Regional,"Central Coast Rx Fire Council,
 Northern California Prescribed Fire Council,
 Southern Sierra Prescribed Fire Council","http://www.centralcoastrxfirecouncil.org/
 http://www.norcalrxfirecouncil.org/
@@ -11,7 +11,7 @@ https://sites.google.com/site/sosierrapfc/home"
 Colorado,Yes,Colorado Prescribed Fire Council,http://www.coprescribedfire.org/
 Connecticut,No,,
 Delaware,No,,
-Florida,Yes (regional),"North Florida Prescribed Fire Council,
+Florida,Regional,"North Florida Prescribed Fire Council,
 Central Florida Prescribed Fire Council,
 South Florida Interagency Fire Management Council","https://www.facebook.com/northfloridaPFC/
 https://www.facebook.com/pg/CFPFCouncil/posts/
@@ -49,7 +49,7 @@ Rhode Island,No,,
 South Carolina,Yes,South Carolina Prescribed Fire Council,https://scpfc.weebly.com/
 South Dakota,No,,
 Tennessee,Yes,Tennessee Prescribed Fire Council,https://www.tnpfc.org/
-Texas,Yes (regional),"Central Texas Prescribed Fire Council
+Texas,Regional,"Central Texas Prescribed Fire Council
 Prescribed Burn Alliance of Texas","https://www.centexrxfire.org/
 https://pbatexas.org/"
 Utah,Yes,Utah Prescribed Fire Council,https://forestry.usu.edu/utah-prescribed-fire-council/who-we-are
