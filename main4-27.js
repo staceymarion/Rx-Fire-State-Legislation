@@ -6,7 +6,14 @@ var attrArray = ["Acres Burned", "Permit Application Fee", "Time to Obtain Permi
 var expressed = attrArray[0];
 
 var arrayAcres = ["<1,000", "1,001-50,000", "50,001-250,000", "250,001-1,000,000", ">1,000,000"];
-var arrayFee = 
+var arrayFee = ["N/A", "Not Required", "Sometimes", "Required"];
+var arrayTime = ["N/A", "Day of Burn", "More than 1 Day"];
+var arrayProgram = ["Yes", "No"];
+var arrayTrends = ["Down", "Same", "Up"];
+var arrayLaw = ["Strict Liability", "Simple Negligence", "Gross Negligence", "No Law"];
+var arrayPermit = ["Required", "Not Required"];
+var arrayCouncil = ["Yes", "No", "Regional"];
+
 
 
 //insert code here!
@@ -47,16 +54,46 @@ function setMap(){
                 return "states " + d.properties.name;
             })
             .attr("d", path);
-        console.log(americanStates.properties);
+        
         var colorScale = makeColorScale(americanStates.properties);
 
         setEnumerationUnits(americanStates, map, path, colorScale);
+
+        $(function() {
+            var Accordion = function(el, multiple) {
+            this.el = el || {};
+            // more then one submenu open?
+            this.multiple = multiple || false;
+        
+            var dropdownlink = this.el.find('.dropdownlink');
+            dropdownlink.on('click',
+                            { el: this.el, multiple: this.multiple },
+                            this.dropdown);
+            };
+        
+            Accordion.prototype.dropdown = function(e) {
+            var $el = e.data.el,
+                $this = $(this),
+                //this is the ul.submenuItems
+                $next = $this.next();
+        
+            $next.slideToggle();
+            $this.parent().toggleClass('open');
+        
+            if(!e.data.multiple) {
+              //show only one menu at the same time
+              $el.find('.submenuItems').not($next).slideUp().parent().removeClass('open');
+            }
+            }
+        
+            var accordion = new Accordion($('.accordion-menu'), false);
+            })
     };
 
+};
 
-
-  //function to create color scale generator
-  function makeColorScale(data) {
+//function to create color scale generator ***&*******&^%$#@ WE NEED TO CHANGE THIS, look at YBNYC
+function makeColorScale(data) {
 
     //create color scale generator
     var colorScale = d3.scaleThreshold().range(colorClasses);
@@ -82,10 +119,11 @@ function setMap(){
     //assign array of last 4 cluster minimums as domain
     colorScale.domain(domainArray);
     return colorScale;
-}
+
+};
 
 function setEnumerationUnits(usa, map, path, colorScale) {
-    //add Spain regions to map
+    //@#$%^&*(*&*********** I DON'T THINK THIS IS REALLY HELPING, we already have var states and I think these 2 are basically doing the same thing, look at YBNYC end of callback function.
     var regions = map
         .selectAll(".regions")
         .data(usa)
@@ -107,41 +145,5 @@ function setEnumerationUnits(usa, map, path, colorScale) {
     var desc = regions.append("desc")
     .text('{"stroke": "#000", "stroke-width": "0.5px"}');
 };
-
-
-
-
-
-    $(function() {
-    var Accordion = function(el, multiple) {
-    this.el = el || {};
-    // more then one submenu open?
-    this.multiple = multiple || false;
-
-    var dropdownlink = this.el.find('.dropdownlink');
-    dropdownlink.on('click',
-                    { el: this.el, multiple: this.multiple },
-                    this.dropdown);
-    };
-
-    Accordion.prototype.dropdown = function(e) {
-    var $el = e.data.el,
-        $this = $(this),
-        //this is the ul.submenuItems
-        $next = $this.next();
-
-    $next.slideToggle();
-    $this.parent().toggleClass('open');
-
-    if(!e.data.multiple) {
-      //show only one menu at the same time
-      $el.find('.submenuItems').not($next).slideUp().parent().removeClass('open');
-    }
-    }
-
-    var accordion = new Accordion($('.accordion-menu'), false);
-    })
-};
-
 
 })();
