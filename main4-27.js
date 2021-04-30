@@ -18,21 +18,15 @@ function setMap(){
         
     var path = d3.geoPath()
         .projection(projection);
-    console.log("hihihii");
-    d3.json("data/usaStates.topojson", function(data) {
-        console.log(data);  
-        callback(data);
-    });
+    
+    $.getJSON("data/usaStates1.topojson", callback);
 
     function callback(data){
         var usa = data;
+        console.log(usa);
 
-        var americanStates = topojson.feature(usa, usa.objects.usaStates).features;
+        var americanStates = topojson.feature(usa, usa.objects.usaStates1).features;
         console.log(americanStates);
-        
-        
- 
-
 
         var states = map.selectAll(".states")
             .data(americanStates)
