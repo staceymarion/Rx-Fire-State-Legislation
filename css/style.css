@@ -14,16 +14,6 @@
     stroke-width: 2px;
 }
 
-.gratLines {
-    fill: none;
-    stroke: #999;
-    stroke-width: 1px;
-}
-
-.gratBackground {
-    fill: #D5E3FF;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -59,7 +49,7 @@ h2 {
 }
 .accordion-menu li.open .dropdownlink {
   color: #E15D44;
-  .fa-chevron-down {
+  .fire {
     transform: rotate(270deg);
   }
 }
@@ -80,7 +70,7 @@ h2 {
     top: 16px;
     left: 15px;
   }
-  .fa-chevron-down {
+  .fire {
     right: 12px;
     left: auto;
   }
