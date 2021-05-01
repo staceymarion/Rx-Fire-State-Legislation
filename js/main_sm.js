@@ -1,3 +1,20 @@
+//completed:
+//data digitization and classification 
+//data join
+//initial map loading
+//color scale in progress..
+//web page creation with bootstrapping
+//web content creation
+//web styling
+
+//group to-do:
+//link choropleth color scale to accordian menu
+//check functionality of all menu items
+//highlight by hover
+//popup by hover
+//card panel compare tool. reference: https://evictionlab.org/map/#/2016?geography=states&bounds=-190.672,8.216,-44.648,62.55&type=er
+// final map styling
+
 (function(){
 
 //pseudo-global variables
