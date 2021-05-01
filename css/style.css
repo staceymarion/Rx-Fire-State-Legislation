@@ -1,7 +1,108 @@
-.map {
-    border: medium solid #999;
+/***** NAVBAR *****/
+
+.navbar {
+    background-color: rgba(20,20,20,0);
+    border-radius: 0;
 }
 
+/* Navbar title */
+.navbar-default .navbar-brand {
+    color: #f9fffd; 
+    font-size: 40px;
+    font-weight: bold;
+    background-color: transparent;
+    text-align: center;
+
+}
+.navbar-brand h2 {
+    font-family: "Montserrat", sans-serif;
+    font-style: bold;
+    font-size: 50px;
+    background-color: transparent;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Navbar hover effects */
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #003a35;
+    text-decoration: none;
+}
+
+/* Navbar links */
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+    font-size: 22px;
+    padding: 10px;
+    text-transform: uppercase;
+    font-family: "Krona One", sans-serif;
+}
+
+/* Navbar collapsed styles */
+.navbar-toggler {
+    color: #fff;
+    border-color: #fff;
+    background-color: #02383a;
+    border-radius: 4px;
+    border:0px solid;
+    fill: #fff;
+    font-size: 16px;
+    position: relative;
+    margin-right: 10px;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+    background-color: #003a35;
+    /** color: #24242400;
+    fill: #242424;
+    border-color: #fff;**/
+
+}
+
+/*** JUMBOTRON ***/
+
+.jumbotron {
+    text-align: left;
+    color: rgba(255, 255, 255);
+    background: rgba(255,255,255,0);
+    padding: 2%;
+    border-radius: 0px;
+}
+
+.jumbotron h2 {
+    font-family: "Krona One", sans-serif;
+    font-size: 80px;
+    color: rgb(241, 248, 247);
+}
+
+.jumbotron p {
+    font-family: "Krona One";
+}
+
+/*** Buttons ***/
+
+.btn.btn-lg{
+    font-family: "Krona One", sans-serif;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(228, 238, 235); 
+    background-color: rgba(20,20,20,.8);
+    border-width: 0px;  
+}
+
+.btn.btn-block {
+   background-color: rgba(20,20,20,.8);
+   border-width: 0px; 
+   font-family: "Krona One", sans-serif;
+   font-size: 20px;
+}
+
+/** map **/
 .states {
     fill: #FFF;
     stroke: #CCC;
@@ -14,83 +115,217 @@
     stroke-width: 2px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
+
+
+/*** Basic Text Styles ***/
+
+#about-world {
+    max-height: 200px;
 }
 
-body {
-  font-family: 'Helvetica', sans-serif;
-  background: #DFCFBE;
+.resume h3 {
+    font-weight: bold;
 }
 
-ul {
-  list-style: none;
-  float: left
+h4 {
+    font-size: 20px
+}
+hr {
+    border-color: white;
+    border-width: 2px;
+}
+
+p {
+    font-size: 20px;
+}
+.sources {
+    padding-left: 50pt;
+    padding-right: 50pt;
+    font-style:normal;
+    font-size: normal;
+    letter-spacing:normal;
+    color:#003a35bd;
+}
+.credits{
+    font-style:italic;
+    font-size: smaller;
+    letter-spacing:normal;
+    color:#003a3583;
+}
+.indented {
+    padding-left: 80pt;
+    padding-right: 80pt;
+    font-style:italic;
+    font-size: x-large;
+    letter-spacing:0.1em;
+    color:#003a35bd;
+}
+.small{
+    padding-left: 80pt;
+    padding-right: 80pt;
+    font-style:italic;
+    font-size: medium;
+    letter-spacing:0.1em;
+    color:#003a35bd;
+    text-align:center;
 }
 
 a {
-  text-decoration: none;
+    color: #02888d;
 }
 
-h2 {
-  text-align: center;
-  margin: 15px auto;
-  color: #FFFFFF;
+a:hover {
+    color: #ebd122;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    color: #242424;
+    background-image: url("../assets/IMG_3688crop.JPG");
+    background-color: #cccccc;
+    background-size:cover;
+    background-repeat:repeat-y;
+    }
+
+.resume {
+    font-family: "Montserrat", sans-serif;
+    color: #242424;
+    background-color: #ffffffd5;
+    background-size: cover;
+    }
+    
+.blank{
+    padding: 2rem;
+    background-color: rgba(255,255,255,0);
+}
+
+.blank.small{
+    padding: 1rem;
+    background-color: rgba(255,255,255,0);
+}
+
+.contact{
+    color: rgba(255,255,255,1)
+}
+hr {
+    background-color: transparent;
+    color:transparent;
+    stroke-opacity: 1.0;
+}
+table, th, td {
+    font-size: medium;
+    border: 1px solid rgb(161, 161, 161);
+    padding: 10px;
+    table-layout: fixed;
+    width: 100%;
+}
+tr:nth-child(1) {
+    text-align: center;
+    font-weight: bold;
+    font-size:medium;
+    letter-spacing:0.1em;
+    color:#003a35bd;
+
+}
+tr:nth-child(3) {
+    background-color:#003a3546;
+    color:#fff;
+
+}
+
+/*** future styling for comparison cards ***/
+
+.card {
+    background-color: rgba(0, 54, 43, 0);
+    border-color: #cccccc;
+    border-width: 0px;
+    width: 100%;
+    font-size: small;
+    margin-top: 10%;
+    margin-bottom: 15%;
+}
+
+.card:hover {
+    border-color: #003a35;
+}
+    
+/*** accordian menu **/
+
+ul {
+    list-style: none;
+    float: left
+}
+  
+  a {
+    text-decoration: none;
+}
+  
+  ul.h2 {
+    text-align: center;
+    margin: 15px auto;
+    color: #FFFFFF;
 }
 
 .accordion-menu {
-  float: left
-  width: 95%;
-  max-width: 350px;
-  margin: 60px auto 20px;
-  background: #FFFFFF;
-  border-radius: 5px;
+    float: left;
+    width: 95%;
+    max-width: 350px;
+    margin: 60px auto 20px;
+    background: #FFFFFF;
+    border-radius: 5px;
 }
-.accordion-menu li.open .dropdownlink {
-  color: #E15D44;
-  .fire {
-    transform: rotate(270deg);
+  .accordion-menu li.open .dropdownlink {
+    color: #E15D44;
   }
-}
-.accordion-menu li:last-child .dropdownlink {
-  border-bottom: 0;
-}
-.dropdownlink {
-  cursor: pointer;
-  display: block;
-  padding: 15px 15px 15px 45px;
-  font-size: 15px;
-  border-bottom: 1px solid #ccc;
-  color: #7FCDCD;
-  position: relative;
-  transition: all 0.5s ease-out;
-  i {
-    position: absolute;
-    top: 16px;
-    left: 15px;
+    .fire {
+        transform: rotate(270deg);
+    }
+
+    .fa-fa-chevron-down {
+      color: transparent;
+    }
+  
+  .accordion-menu li:last-child .dropdownlink {
+    border-bottom: 1px;
   }
-  .fire {
+  .dropdownlink {
+    cursor: pointer;
+    display: block;
+    padding: 15px 15px 15px 15px;
+    font-size: 15px;
+    border-bottom: 1px solid #ccc;
+    color: #7FCDCD;
+    position: relative;
+    transition: all 0.5s ease-out;
+  }
+
+.fa-fa-chevron-down {
+      right:initial;
+      left:initial;
+      size:0px;
+}
+.fire {
     right: 12px;
     left: auto;
   }
-}
+ 
 
-.submenuItems {
-  display: none;
-  background: #92A8D1;
-  li {
-    border-bottom: 1px solid #bdbbbb;
+  .submenuItems {
+    display: none;
+    background: #92A8D1;
+    li {
+      border-bottom: 1px;
+    }
   }
-}
-
-.submenuItems a {
-  display: block;
-  color: #fff;
-  padding: 13px 13px 13px 45px;
-  transition: all 0.5s ease-out;
-  &:hover {
-    background-color: #88B04B;
-    color: #FFFFFF;
+  
+  .submenuItems a {
+    display: block;
+    color: #fff;
+    padding: 13px 13px 13px 45px;
+    transition: all 0.5s ease-out;
+    &:hover {
+      background-color: #88B04B;
+      color: #FFFFFF;
+    }
   }
-}
+  
