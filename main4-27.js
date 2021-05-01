@@ -109,7 +109,7 @@ function setMap(){
         
         function drawMenu(){
             
-            $(".Acres").click(function(){ 
+            $(".acres-burned").click(function(){ 
             expressed = Category[0];
             $('.stepBackward').prop('disabled', true);
             $('.play').prop('disabled', true);
