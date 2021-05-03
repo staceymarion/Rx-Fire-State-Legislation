@@ -18,10 +18,12 @@
 (function(){
 
 //pseudo-global variables
-var attrArray = ["Acres Burned", "Permit Application Fee", "Time to Obtain Permit", "State-Certified Burn Program", "Trend Direction", "State Liability Law", "Permit Requirement", "State Fire Council"];
-var expressed = attrArray[0];
+//var attrArray = ["Acres Burned", "Permit Application Fee", "Time to Obtain Permit", "State-Certified Burn Program", "Trend Direction", "State Liability Law", "Permit Requirement", "State Fire Council"];
+var attrArray = ["Acres_2017", "Acres_2018", "Acres_2019", "BurnProgr", "FireCounci", "LiabilityL", "Link", "PermitFee", "PermitReq", "Time4Peri","Trend_2017", "Trend_2018", "Trend_2019", "fcName"];
+var expressed = attrArray[0]; // initial attribute expressed
 
-var arrayAcres = ["<1,000", "1,001-50,000", "50,001-250,000", "250,001-1,000,000", ">1,000,000"];
+//var arrayAcres = ["<1,000", "1,001-50,000", "50,001-250,000", "250,001-1,000,000", ">1,000,000"];
+var arrayAcres = [1, 2, 3, 4, 5];
 var arrayFee = ["N/A", "Not Required", "Sometimes", "Required"];
 var arrayTime = ["N/A", "Day of Burn", "More than 1 Day"];
 var arrayProgram = ["Yes", "No"];
@@ -30,11 +32,14 @@ var arrayLaw = ["Strict Liability", "Simple Negligence", "Gross Negligence", "No
 var arrayPermit = ["Required", "Not Required"];
 var arrayCouncil = ["Yes", "No", "Regional"];
 
-//color
+//color scale
 var scale; // for use with the var scale = d3.ordinalScale, line 219
-var colorize;
+//var colorScale;  // changed colorize --> colorScale. not sure if needed as psuedo global
+// under callback, following D3 lab logic
 var currentColors = [];
+var currentArray = [];
 
+// individual arrays for each attribute -- for legend generation. different number of categories for each
 var colorArrayAcres = ["#b3cde0",       //<1,000
                        "#6497b1",       //1,001-50,000
                        "#005b96",       //50,001-250,000
@@ -69,10 +74,6 @@ var colorArrayCouncil = ["#b3cde0",     //Yes
                          "#005b96",     //No
                          "#011f4b"];    //Regional
     
-//colorscale
-var currentColors = [];
-var currentArray = [];
-
 
 //insert code here!
 window.onload = setMap();
@@ -83,7 +84,7 @@ function setMap(){
     var width = 900,
         height = 500;
     
-    var map = d3.select(".map")
+    var map = d3.select(".map") // class map in bootstrap column 
         .append("svg")
         .attr("class", "map")
         .attr("width", width)
@@ -93,20 +94,22 @@ function setMap(){
         .scale(900)
         .translate([width / 2, height / 2]);
         
-    var path = d3.geoPath()
+    var path = d3.geoPath() //path generator
         .projection(projection);
     
-    $.getJSON("data/usaStates1.topojson", callback);
+    $.getJSON("data/usaStates1.topojson", callback); // all data joined in topojson
 
     function callback(data){
         var usa = data;
 
         var americanStates = topojson.feature(usa, usa.objects.usaStates1).features;
+        console.log(americanStates); //works
 
-        //var colorScale = makeColorScale(americanStates.properties); //makeColorScale not a fxn in this code
-        colorize = colorScale(americanStates) // colorize fxn defined below  // where do we call colorize?
+        var colorScale = makeColorScale(usa); //makeColorScale not a fxn in this code
         
-        setEnumerationUnits(americanStates, map, path, colorize);
+        //colorize = colorScale(americanStates) // colorize fxn defined below  // where do we call colorize?
+        
+        setEnumerationUnits(usa, map, path, colorScale); // change colorize --> colorScale for more consistent language with D3 lab tutorial
         
         //drawMenu(); //create menu //for right now, not using drawMenu code
         
@@ -145,26 +148,6 @@ function setMap(){
     });    
 };
 
-function setEnumerationUnits(americanStates, map, path, colorize) {
-    var states = map.selectAll(".states")
-        .data(americanStates)
-        .enter()
-        .append("path")
-        .attr("class", function (d) {
-            return "states " + d.properties.name;
-        })
-        .style("fill", function(d){
-            return choropleth(d, colorize);
-        })
-        .attr("d", function(d) {
-            return path(d);
-        })
-
-    var statesColor = states.append("desc")
-        .text(function(d) {
-            return choropleth(d, colorize);
-        })
-};
 
 /* function drawMenu(){
             
@@ -176,20 +159,21 @@ function setEnumerationUnits(americanStates, map, path, colorize) {
     $('.stepForward').prop('disabled', true);
     d3.selectAll(".menu-options div").style({'background-color': '#e1e1e1','color': '#969696'});
     d3.selectAll(".states").style("fill", function(d){
-            return choropleth(d, colorize);
+            return choropleth(d, colorScale);
         })
         .select("desc")
             .text(function(d) {
-                return choropleth(d, colorize);
+                return choropleth(d, colorScale);
         });
     createMenu(arrayOverview, colorArrayOverview, "Grading Scale: ", textArray[0], linkArray[0]);
     $(".Overview").css({'background-color': '#CCCCCC','color': '#333333'});
     });     
 }; */
 
-function colorScale(data){
+function makeColorScale(data){
     // this if/else statement determines which variable is currently being expressed and assigns the appropriate color scheme to currentColors
-    if (expressed === "Acres Burned") {   
+    // currentColors, currentArray, and attribute arrays are defined as psuedo global
+    if (expressed === "Acres_2017") {   
         currentColors = colorArrayAcres;
         currentArray = arrayAcres;
     } else if (expressed === "Permit Application Fee") {
@@ -198,7 +182,7 @@ function colorScale(data){
     } else if (expressed === "Time to Obtain Permit") {
         currentColors = colorArrayTime;
         currentArray = arrayTime;
-    } else if (expressed === "State-Certified Burn Program") {
+    } else if (expressed === "BurnProgra") {
         currentColors = colorArrayProgram;
         currentArray = arrayProgram;
     } else if (expressed === "Trend Direction") {
@@ -213,21 +197,49 @@ function colorScale(data){
     } else if (expressed === "State Fire Council") {
         currentColors = colorArrayCouncil;
         currentArray = arrayCouncil;
+    } else {
+        currentColors = "#ccc";
     };
 
-    //****&^%$#@#$%^&*^%$#@$%^&^%$# Work on this stuff here */
-    scale = d3.scaleOrdinal()   // sm: changed colorScale --> 
-                .range(currentColors)
-                .domain(currentArray); //sets the range of colors and domain of values based on the currently selected 
-    return scale(data);
+    var colorScale = d3.scaleOrdinal()   // sm: changed colorScale --> 
+                .range(currentColors) // array of colors
+                .domain(currentArray); // array of possible domain values --  sets the range of colors and domain of values based on the currently selected 
+    return colorScale;
 };
 
-function choropleth(d, colorize){
+function setEnumerationUnits(americanStates, map, path, colorScale) {
+    var states = map.selectAll(".states")
+        .data(americanStates)
+        .enter()
+        .append("path")
+        .attr("class", function (d) {
+            return "states " + d.properties.name;
+        })
+        .attr("d", path)  // added
+        .style("fill", function(d){
+            var value = d.properties[expressed];
+            if(value) {
+                return choropleth(d, colorScale);
+            } else {
+                return "#ccc";
+            }    
+        })
+        /* .attr("d", function(d) {
+            return path(d);
+        }) */
+
+    /* var statesColor = states.append("desc")  //for mouseover
+        .text(function(d) {
+            return choropleth(d, colorScale);
+        }) */
+};
+
+function choropleth(d, colorScale){
     var data = d.properties ? d.properties[expressed] : d;
     return colorScale(data);
-};
+}; 
 
-})();
+})(); // last line of main.js
 
         
 // to add: card panels to compare states.  model = eviction lab
