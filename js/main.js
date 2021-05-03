@@ -33,7 +33,7 @@ var arrayPermit = ["Required", "Not Required"];
 var arrayCouncil = ["Yes", "No", "Regional"];
 
 //color scale
-var scale; // for use with the var scale = d3.ordinalScale, line 219
+//var scale; // for use with the var scale = d3.ordinalScale, line 219
 //var colorScale;  // changed colorize --> colorScale. not sure if needed as psuedo global
 // under callback, following D3 lab logic
 var currentColors = [];
@@ -74,6 +74,8 @@ var colorArrayCouncil = ["#b3cde0",     //Yes
                          "#005b96",     //No
                          "#011f4b"];    //Regional
     
+// replace above two arrays to a single array attrcol1 = {attr1: color1, attr2: color2, …}
+// attrcol1 = {attr1: color1, attr2: color2, …}
 
 //insert code here!
 window.onload = setMap();
@@ -170,6 +172,8 @@ function setMap(){
     });     
 }; */
 
+// can remove makeColorScale fxn 
+
 function makeColorScale(data){
     // this if/else statement determines which variable is currently being expressed and assigns the appropriate color scheme to currentColors
     // currentColors, currentArray, and attribute arrays are defined as psuedo global
@@ -219,11 +223,21 @@ function setEnumerationUnits(americanStates, map, path, colorScale) {
         .style("fill", function(d){
             var value = d.properties[expressed];
             if(value) {
-                return choropleth(d, colorScale);
+                return choropleth(d, colorScale);  // set color; 
             } else {
                 return "#ccc";
             }    
         })
+
+      /*   .style(“fill”, function(d) {
+            var color = attrcol1[d.properties[attr1]];  // find corresponding color value from attr1 
+            return color;
+          })
+           */  // could do by index from dropdown , alternative to if else 
+
+          // on clikc, change expressed value replace attr1 with whatever selected ; 
+          // need if, else.   
+
         /* .attr("d", function(d) {
             return path(d);
         }) */
@@ -241,5 +255,7 @@ function choropleth(d, colorScale){
 
 })(); // last line of main.js
 
-        
+// update function
+// use if else statement to redefine attr1, attrcolor1
+
 // to add: card panels to compare states.  model = eviction lab
