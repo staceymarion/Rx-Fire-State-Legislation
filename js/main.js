@@ -31,6 +31,7 @@ var arrayPermit = ["Required", "Not Required"];
 var arrayCouncil = ["Yes", "No", "Regional"];
 
 //color
+var scale; // for use with the var scale = d3.ordinalScale, line 219
 var colorize;
 var currentColors = [];
 
@@ -102,12 +103,12 @@ function setMap(){
 
         var americanStates = topojson.feature(usa, usa.objects.usaStates1).features;
 
-        //var colorScale = makeColorScale(americanStates.properties);
-        colorize = colorScale(americanStates) // colorize fxn defined below
+        //var colorScale = makeColorScale(americanStates.properties); //makeColorScale not a fxn in this code
+        colorize = colorScale(americanStates) // colorize fxn defined below  // where do we call colorize?
         
         setEnumerationUnits(americanStates, map, path, colorize);
         
-        drawMenu(); //create menu
+        //drawMenu(); //create menu //for right now, not using drawMenu code
         
         
     }; // end of callback
@@ -215,10 +216,10 @@ function colorScale(data){
     };
 
     //****&^%$#@#$%^&*^%$#@$%^&^%$# Work on this stuff here */
-    colorScale = d3.scaleOrdinal()
+    scale = d3.scaleOrdinal()   // sm: changed colorScale --> 
                 .range(currentColors)
                 .domain(currentArray); //sets the range of colors and domain of values based on the currently selected 
-    return colorScale(expressed);
+    return scale(data);
 };
 
 function choropleth(d, colorize){
