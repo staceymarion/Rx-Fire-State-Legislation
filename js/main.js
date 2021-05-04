@@ -20,19 +20,19 @@
 //pseudo-global variables
 //var attrArray = ["Acres Burned", "Permit Application Fee", "Time to Obtain Permit", "State-Certified Burn Program", "Trend Direction", "State Liability Law", "Permit Requirement", "State Fire Council"];
 var attrArray = ["Acres_2017", 
-"Acres_2018", 
-"Acres_2019", 
-"BurnProgr", 
-"FireCounci", 
-"LiabilityL", 
-"Link", 
-"PermitFee", 
-"PermitReq", 
-"Time4Peri", 
-"Trend_2017", 
-"Trend_2018", 
-"Trend_2019", 
-"fcName"];
+                 "Acres_2018", 
+                 "Acres_2019", 
+                 "BurnProgr", 
+                 "FireCounci", 
+                 "LiabilityL", 
+                 "Link", 
+                 "PermitFee", 
+                 "PermitReq", 
+                 "Time4Peri", 
+                 "Trend_2017", 
+                 "Trend_2018", 
+                 "Trend_2019", 
+                 "fcName"];
 // for simplicity, consider just using most recent date. for ex: Acres_2019
 
 var expressed = attrArray[0]; // initial attribute expressed
@@ -93,7 +93,7 @@ var colorArrayCouncil = ["#b3cde0",     //Yes
 
 
 var attrcol = {
-    Acres_2017: { 1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b" },
+    Acres_2017: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b" },
     Acres_2018: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b" }, //skip
     Acres_2019: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b" }, //skip
     BurnProgr: { "Yes": "#b3cde0", "No": "#011f4b" },
@@ -107,7 +107,7 @@ var attrcol = {
     Trend_2018: {"Down":"#b3cde0" , "Same":"#005b96" , "Up":"#011f4b" }, //skip
     Trend_2019: {"Down":"#b3cde0" , "Same":"#005b96" , "Up":"#011f4b" },
 };
-
+console.log(attrcol.Acres_2017[1]);
 window.onload = setMap();
 
 //set up choropleth map
@@ -257,10 +257,12 @@ function setEnumerationUnits(americanStates, map, path) {
         //console.log(d.properties[expressed]);
         //console.log(attrcol[expressed]); // results {1:#b3cde0, etc.}  
         .style("fill", function(d){
-            var value = d.properties[expressed];   // not working
-            console.log(value); 
+            var value = d.properties[expressed];   // working!!!!!!!!
+            console.log(value);
+            console.log(expressed); 
             if(value) {
-                attrcol[expressed][d.properties[expressed]];  //not working
+                //console.log(attrcol[expressed][d.properties[expressed]]);
+                return attrcol[expressed][d.properties[expressed]];  // working!!!!!!
             } else {
                 return "#ccc";  // returning ccc for all
             }    
