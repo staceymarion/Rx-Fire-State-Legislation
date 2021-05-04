@@ -126,7 +126,7 @@ function setEnumerationUnits(americanStates, map, path) {
         .on("mouseout", function(event, d){
             dehighlight(d.properties);
         });
-        .on("mousemove", moveLabel)
+        //.on("mousemove", moveLabel)
         var desc = states.append("desc")
             .text('{"stroke": "#000", "stroke-width": "0.5px"}')
 };
