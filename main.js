@@ -126,13 +126,14 @@ function setEnumerationUnits(americanStates, map, path) {
         .on("mouseout", function(event, d){
             dehighlight(d.properties);
         });
-    var desc = states.append("desc")
-        .text('{"stroke": "#000", "stroke-width": "0.5px"}');
+        .on("mousemove", moveLabel)
+        var desc = states.append("desc")
+            .text('{"stroke": "#000", "stroke-width": "0.5px"}')
 };
 
 function highlight(props){
     //change stroke
-    var selected = d3.selectAll("." + props.name)
+    var selected = d3.selectAll("." + props.name) // Only selecting first value, "New" of "New York"
         .style("stroke", "blue")
         .style("stroke-width", "2");
     console.log(props.name);
@@ -161,7 +162,9 @@ function dehighlight(props){
 
 })(); // last line of main.js
 
-// update function
-// use if else statement to redefine attr1, attrcolor1
+// add pop-up with additional information (ex. link for fire councils)
+
+// add dropdown menu function 
+  // for variables recoded to numbers --> convert back to string values
 
 // to add: card panels to compare states.  model = eviction lab
