@@ -20,19 +20,19 @@ var attrArray = ["Acres_2017",
 var expressed = attrArray[0]; // initial attribute expressed
 
 var attrcol = {
-    Acres_2017: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b" },
-    Acres_2018: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b" }, //skip
-    Acres_2019: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b" }, //skip
-    BurnProgr: { "Yes": "#b3cde0", "No": "#011f4b" },
-    FireCounci: { "Yes": "#b3cde0", "No": "#005b96", "Regional":"#011f4b"},
-    LiabilityL: { 1:"#6497b1", 2:"#005b96", 3:"#03396c", 4:"#011f4b" },
+    Acres_2017: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b"},
+    Acres_2018: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b"}, //skip
+    Acres_2019: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b"}, //skip
+    BurnProgr: {"Yes": "#b3cde0", "No": "#011f4b" },
+    FireCounci: {"Yes": "#b3cde0", "No": "#005b96", "Regional":"#011f4b"},
+    LiabilityL: {1:"#6497b1", 2:"#005b96", 3:"#03396c", 4:"#011f4b" },
     Link: {},  // dont need
-    PermitFee: {"N/A":"#6497b1" , "Not Required":"#005b96" , "Sometimes":"#03396c" , "Required":"#011f4b" },
-    PermitReq: {"Required":"#b3cde0" , "Not Required":"#011f4b"},
-    Time4Peri: {1:"#b3cde0" , 2:"#005b96"  , 3:"#011f4b"},
-    Trend_2017: {"Down":"#b3cde0" , "Same":"#005b96" , "Up":"#011f4b" }, // skip
-    Trend_2018: {"Down":"#b3cde0" , "Same":"#005b96" , "Up":"#011f4b" }, //skip
-    Trend_2019: {"Down":"#b3cde0" , "Same":"#005b96" , "Up":"#011f4b" },
+    PermitFee: {"N/A":"#6497b1", "Not Required":"#005b96", "Sometimes":"#03396c", "Required":"#011f4b"},
+    PermitReq: {"Required":"#b3cde0", "Not Required":"#011f4b"},
+    Time4Peri: {1:"#b3cde0", 2:"#005b96", 3:"#011f4b"},
+    Trend_2017: {"Down":"#b3cde0", "Same":"#005b96", "Up":"#011f4b"}, // skip
+    Trend_2018: {"Down":"#b3cde0", "Same":"#005b96", "Up":"#011f4b"}, //skip
+    Trend_2019: {"Down":"#b3cde0", "Same":"#005b96", "Up":"#011f4b"}
 };
 console.log(attrcol.Acres_2017[1]);
 window.onload = setMap();
