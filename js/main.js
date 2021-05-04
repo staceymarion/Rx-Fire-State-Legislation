@@ -258,9 +258,9 @@ function setEnumerationUnits(americanStates, map, path) {
         //console.log(attrcol[expressed]); // results {1:#b3cde0, etc.}  
         .style("fill", function(d){
             var value = d.properties[expressed];   // not working
-            console.log(value); 
+            //console.log(value); 
             if(value) {
-                attrcol[expressed][d.properties[expressed]];  //not working
+                return attrcol[expressed][d.properties[expressed]];  
             } else {
                 return "#ccc";  // returning ccc for all
             }    
