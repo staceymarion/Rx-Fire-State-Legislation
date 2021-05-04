@@ -133,14 +133,14 @@ function setEnumerationUnits(americanStates, map, path) {
 
 function highlight(props){
     //change stroke
-    var selected = d3.selectAll("." + props.name) // Only selecting first value, "New" of "New York"
+    var selected = d3.selectAll("." + props.name.split(' ').join('')) // Only selecting first value, "New" of "New York"
         .style("stroke", "blue")
         .style("stroke-width", "2");
     console.log(props.name);
 };
 
 function dehighlight(props){
-    var selected = d3.selectAll("." + props.name)
+    var selected = d3.selectAll("." + props.name.split(' ').join(''))
         .style("stroke", function(){
             return getStyle(this, "stroke")
         })
