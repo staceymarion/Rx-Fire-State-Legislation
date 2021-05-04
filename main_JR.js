@@ -122,8 +122,12 @@ function setEnumerationUnits(americanStates, map, path) {
         })
         .on("mouseover", function(event, d){
             highlight(d.properties);
+        })
+        .on("mouseout", function(event, d){
+            dehighlight(d.properties);
         });
-   
+    var desc = states.append("desc")
+        .text('{"stroke": "#000", "stroke-width": "0.5px"}');
 };
 
 function highlight(props){
@@ -131,6 +135,27 @@ function highlight(props){
     var selected = d3.selectAll("." + props.name)
         .style("stroke", "blue")
         .style("stroke-width", "2");
+    console.log(props.name);
+};
+
+function dehighlight(props){
+    var selected = d3.selectAll("." + props.name)
+        .style("stroke", function(){
+            return getStyle(this, "stroke")
+        })
+        .style("stroke-width", function(){
+            return getStyle(this, "stroke-width")
+        });
+
+    function getStyle(element, styleName){
+        var styleText = d3.select(element)
+            .select("desc")
+            .text();
+
+        var styleObject = JSON.parse(styleText);
+
+        return styleObject[styleName];
+    };
 };
 
 
