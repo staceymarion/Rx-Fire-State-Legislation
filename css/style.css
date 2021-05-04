@@ -108,6 +108,15 @@
     stroke-width: 1px;
 }
 
+/** Label Stuff **/
+.infoLabel {
+    position: absolute;
+    height: auto;
+    float: right;
+}
+
+
+
 /*** Basic Text Styles ***/
 
 #about-world {

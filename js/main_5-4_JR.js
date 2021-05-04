@@ -1,0 +1,275 @@
+(function(){
+
+//pseudo-global variables
+var attrArray = ["Acres_2017", 
+                 "Acres_2018", 
+                 "Acres_2019", 
+                 "BurnProgr", 
+                 "FireCounci", 
+                 "LiabilityL", 
+                 "Link", 
+                 "PermitFee", 
+                 "PermitReq", 
+                 "Time4Peri", 
+                 "Trend_2017", 
+                 "Trend_2018", 
+                 "Trend_2019", 
+                 "fcName"];
+// for simplicity, consider just using most recent date. for ex: Acres_2019
+
+var expressed = attrArray[0]; // initial attribute expressed
+
+var attrcol = {
+    Acres_2017: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b"},
+    Acres_2018: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b"}, //skip
+    Acres_2019: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b"}, //skip
+    BurnProgr: {"Yes": "#b3cde0", "No": "#011f4b" },
+    FireCounci: {"Yes": "#b3cde0", "No": "#005b96", "Regional":"#011f4b"},
+    LiabilityL: {1:"#6497b1", 2:"#005b96", 3:"#03396c", 4:"#011f4b" },
+    Link: {},  // dont need
+    PermitFee: {"N/A":"#6497b1", "Not Required":"#005b96", "Sometimes":"#03396c", "Required":"#011f4b"},
+    PermitReq: {"Required":"#b3cde0", "Not Required":"#011f4b"},
+    Time4Peri: {1:"#b3cde0", 2:"#005b96", 3:"#011f4b"},
+    Trend_2017: {"Down":"#b3cde0", "Same":"#005b96", "Up":"#011f4b"}, // skip
+    Trend_2018: {"Down":"#b3cde0", "Same":"#005b96", "Up":"#011f4b"}, //skip
+    Trend_2019: {"Down":"#b3cde0", "Same":"#005b96", "Up":"#011f4b"}
+};
+console.log(attrcol.Acres_2017[1]);
+window.onload = setMap();
+
+//set up choropleth map
+function setMap(){ 
+
+    var width = 900,
+        height = 500;
+    
+    var map = d3.select(".map") // class map in bootstrap column 
+        .append("svg")
+        .attr("class", "map")
+        .attr("width", width)
+        .attr("height", height);
+
+    var projection = d3.geoAlbersUsa()
+        .scale(900)
+        .translate([width / 2, height / 2]);
+        
+    var path = d3.geoPath() //path generator
+        .projection(projection);
+    
+    $.getJSON("data/usaStates1.topojson", callback); // all data joined in topojson
+
+    function callback(data){
+        var usa = data;
+
+        var americanStates = topojson.feature(usa, usa.objects.usaStates1).features;
+        //console.log(americanStates); //works
+
+        setEnumerationUnits(americanStates, map, path); 
+        
+    }; // end of callback
+
+    //accordion menu
+    $(function() {
+        var Accordion = function(el, multiple) {
+        this.el = el || {};
+        // more then one submenu open?
+        this.multiple = multiple || false;
+    
+        var dropdownlink = this.el.find('.dropdownlink');
+        dropdownlink.on('click',
+                        { el: this.el, multiple: this.multiple },
+                        this.dropdown);
+        };
+    
+        Accordion.prototype.dropdown = function(e) {
+        var $el = e.data.el,
+            $this = $(this),
+            //this is the ul.submenuItems
+            $next = $this.next();
+    
+        $next.slideToggle();
+        $this.parent().toggleClass('open');
+    
+        if(!e.data.multiple) {
+            //show only one menu at the same time
+            $el.find('.submenuItems').not($next).slideUp().parent().removeClass('open');
+            }
+        };
+    
+        var accordion = new Accordion($('.accordion-menu'), false);
+    });    
+};
+
+function setEnumerationUnits(americanStates, map, path) {
+    var states = map.selectAll(".states")
+        .data(americanStates)
+        .enter()
+        .append("path")
+        .attr("class", function (d) {
+            return "states " + d.properties.name.replace(".",""); // working! 
+        })
+        .attr("d", path)  // added
+        .style("fill", function(d){
+            var value = d.properties[expressed];   // working!!!!!!!!
+            console.log(value);
+            console.log(expressed); 
+            if(value) {
+                //console.log(attrcol[expressed][d.properties[expressed]]);
+                return attrcol[expressed][d.properties[expressed]];  // working!!!!!!
+            } else {
+                return "#ccc";  
+            }    
+        })
+        .on("mouseover", function(event, d){
+            highlight(d.properties);
+        })
+        .on("mouseout", function(event, d){
+            console.log(d.properties);
+            dehighlight(d.properties);
+        });
+        //.on("mousemove", moveLabel)
+        var desc = states.append("desc")
+            .text('{"stroke": "#000", "stroke-width": "0.5px"}')
+};
+
+function highlight(props){
+    //change stroke
+    var selected = d3.selectAll("." + props.name) // Only selecting first value, "New" of "New York"
+        .style("stroke", "blue")
+        .style("stroke-width", "2");
+    console.log(props.name);
+
+    var labelName = props.name;
+    var labelAttribute;
+
+    if (expressed == "Acres_2017") {
+        if (props[expressed] == 1) {
+            labelAttribute = "<1,000 Acres Burned in 2017";
+        } else if (props[expressed] == 2) {
+            labelAttribute = "1,001-50,000 Acres Burned in 2017";
+        } else if (props[expressed] == 3) {
+            labelAttribute = "50,001-250,000 Acres Burned in 2017";
+        } else if (props[expressed] == 4) {
+            labelAttribute = "250,001-1,000,000 Acres Burned in 2017";
+        } else if (props[expressed] == 5) {
+            labelAttribute = ">1,000,000 Acres Burned in 2017";
+        };
+    } else if (expressed == "Acres_2018") {
+        if (props[expressed] == 1) {
+            labelAttribute = "<1,000 Acres Burned in 2018";
+        } else if (props[expressed] == 2) {
+            labelAttribute = "1,001-50,000 Acres Burned in 2018";
+        } else if (props[expressed] == 3) {
+            labelAttribute = "50,001-250,000 Acres Burned in 2018";
+        } else if (props[expressed] == 4) {
+            labelAttribute = "250,001-1,000,000 Acres Burned in 2018";
+        } else if (props[expressed] == 5) {
+            labelAttribute = ">1,000,000 Acres Burned in 2018";
+        };
+    } else if (expressed == "Acres_2019") {
+        if (props[expressed] == 1) {
+            labelAttribute = "<1,000 Acres Burned in 2019";
+        } else if (props[expressed] == 2) {
+            labelAttribute = "1,001-50,000 Acres Burned in 2019";
+        } else if (props[expressed] == 3) {
+            labelAttribute = "50,001-250,000 Acres Burned in 2019";
+        } else if (props[expressed] == 4) {
+            labelAttribute = "250,001-1,000,000 Acres Burned in 2019";
+        } else if (props[expressed] == 5) {
+            labelAttribute = ">1,000,000 Acres Burned in 2019";
+        };
+    } else if (expressed == "PermitFee") {
+        if (props[expressed] == "Required") {
+            labelAttribute = "Fee required with permit application";
+        } else if (props[expressed] == "Sometimes") {
+            labelAttribute = "Fee sometimes required with permit application";
+        } else if (props[expressed] == "Not Required") {
+            labelAttribute = "Fee not required with permit application";
+        } else if (props[expressed] == "N/A") {
+            labelAttribute = "Fee not applicable with permit application";
+        };
+    } else if (expressed == "Time4Permi") {
+        if (props[expressed] == 1) {
+            labelAttribute = "Time to obtain permit before burn not applicable with no permit requirement";
+        } else if (props[expressed] == 2) {
+            labelAttribute = "Permit must be obtained at least day of burn";
+        } else if (props[expressed] == 3) {
+            labelAttribute = "Permit must be obtained more than 1 day before burn";
+        };
+    } else if (expressed == "BurnProgra") {
+        if (props[expressed] == "Yes") {
+            labelAttribute = "State has state-certified burn program"; 
+        } else if (props[expressed] == "No") {
+            labelAttribute = "State does not have state-certified burn program";
+        };
+    } else if (expressed == "Trend_2017") {
+        labelAttribute = "Fire trend direction of 2017: " + props[expressed];
+    } else if (expressed == "Trend_2018") {
+        labelAttribute = "Fire trend direction of 2018: " + props[expressed];
+    } else if (expressed == "Trend_2019") {
+        labelAttribute = "Fire trend direction of 2019: " + props[expressed];
+    } else if (expressed == "LiabilityL") {
+        if (props[expressed] == 1) {
+            labelAttribute = "Fire law(s) of Strict Liability";
+        } else if (props[expressed] == 2) {
+            labelAttribute = "Fire law(s) of Simple Negligence";
+        } else if (props[expressed] == 3) {
+            labelAttribute = "Fire law(s) of Gross Negligence";
+        } else if (props[expressed] == 4) {
+            labelAttribute = "No law(s) pertaining to fire liability";
+        };
+    } else if (expressed == "PermitRequ") {
+        labelAttribute = "Permit" + props[expressed] + "to burn";
+    } else if (expressed == "FireCounci") {
+        if (props[expressed] == "Yes" || "Regional") {
+            labelAttribute = fcName + "<br>" + Link;
+        } else if (props[expressed] == "No") {
+            labelAttribute = "No state fire council";
+        };
+    };
+
+    var infoLabel = d3.select(".map")
+        .append("div")
+        .attr("class", "infoLabel")
+        .attr("id", props.name + "_label");
+    
+    var labelTitle = d3.select(".infoLabel")
+        .html(labelName)
+        .attr("class", "labelTitle");
+
+    var labelContent = d3.select(".labelTitle")
+        .append("div")
+        .html(labelAttribute)
+        .attr("class", "labelContent");
+    
+};
+
+function dehighlight(props){
+    var selected = d3.selectAll("." + props.name)
+        .style("stroke", function(){
+            return getStyle(this, "stroke")
+        })
+        .style("stroke-width", function(){
+            return getStyle(this, "stroke-width")
+        });
+
+    function getStyle(element, styleName){
+        var styleText = d3.select(element)
+            .select("desc")
+            .text();
+
+        var styleObject = JSON.parse(styleText);
+
+        return styleObject[styleName];
+    };
+};
+
+
+})(); // last line of main.js
+
+// add pop-up with additional information (ex. link for fire councils)
+
+// add dropdown menu function 
+  // for variables recoded to numbers --> convert back to string values
+
+// to add: card panels to compare states.  model = eviction lab
