@@ -113,9 +113,33 @@
     position: absolute;
     height: auto;
     float: right;
+    display: inline;
+    margin-right: -200px;
+    padding: 20px;
 }
 
+.labelTitle {
+    position: absolute;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    background-color: #525252;
+    color:#fff;
+    z-index: 2;
+    width: 175px;
+    padding: 10px;
+    margin-top: -300px;
+    margin-left: 760px;
+}
 
+.labelContent {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: lighter;
+    line-height: 20px;
+    padding-top: 10px;
+}
 
 /*** Basic Text Styles ***/
 

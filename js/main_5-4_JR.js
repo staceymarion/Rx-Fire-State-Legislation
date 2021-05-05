@@ -124,7 +124,6 @@ function setEnumerationUnits(americanStates, map, path) {
             highlight(d.properties);
         })
         .on("mouseout", function(event, d){
-            console.log(d.properties);
             dehighlight(d.properties);
         });
         //.on("mousemove", moveLabel)
@@ -232,16 +231,14 @@ function highlight(props){
         .append("div")
         .attr("class", "infoLabel")
         .attr("id", props.name + "_label");
-    
-    var labelTitle = d3.select(".infoLabel")
-        .html(labelName)
+    console.log(infoLabel);
+    var labelTitle = infoLabel.html(labelName)
         .attr("class", "labelTitle");
-
-    var labelContent = d3.select(".labelTitle")
-        .append("div")
+    console.log(labelTitle);
+    var labelContent = labelTitle.append("div")
         .html(labelAttribute)
         .attr("class", "labelContent");
-    
+    console.log(labelContent);
 };
 
 function dehighlight(props){
@@ -262,6 +259,9 @@ function dehighlight(props){
 
         return styleObject[styleName];
     };
+    
+    d3.select(".infoLabel")
+        .remove();
 };
 
 
