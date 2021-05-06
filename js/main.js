@@ -104,13 +104,16 @@ function setMap(){
             $this = $(this),
             //this is the ul.submenuItems
             $next = $this.next();
+        console.log($this);  // S.fn.init div.dropdownlink
+        console.log($next); //prevObject:S.fn.init(1)
     
-        $next.slideToggle();
-        $this.parent().toggleClass('open');
+        $next.slideToggle();  // this opens the submenu items
+        $this.parent().toggleClass('open'); // commenting this out removes highlighting for all
     
         if(!e.data.multiple) {
             //show only one menu at the same time
             $el.find('.submenuItems').not($next).slideUp().parent().removeClass('open');
+            $el.find('.dropdownlink').not($this).parent().removeClass('open'); // this removes highlighting 
             }
         };
     
