@@ -132,8 +132,8 @@
 
 /** map **/
 .states {
-    stroke: #ffffff;
-    stroke-width: 1px;
+    stroke: black;
+    stroke-width: .75px;
 }
 
 /*** Basic Text Styles ***/
