@@ -232,16 +232,6 @@ function highlight(props){
         .append("div")
         .attr("class", "infoLabel")
         .attr("id", props.name + "_label");
-<<<<<<< Updated upstream
-    //console.log(infoLabel);
-    var labelTitle = infoLabel.html(labelName) 
-        .attr("class", "labelTitle");
-    //console.log(labelTitle);
-    var labelContent = labelTitle.append("div")
-        .html(labelAttribute)
-        .attr("class", "labelContent");
-    //console.log(labelContent);
-=======
     
     var labelTitle = infoLabel.html(labelName)
         .attr("class", "labelTitle");
@@ -250,7 +240,6 @@ function highlight(props){
         .html(labelAttribute)
         .attr("class", "labelContent");
   
->>>>>>> Stashed changes
 };
 
 function dehighlight(props){
