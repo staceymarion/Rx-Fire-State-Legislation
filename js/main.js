@@ -352,18 +352,42 @@ function createLegend(expressed) {
         .attr("class", "svg");   //"svg"
     
     //if, else if statement to choose the legend to be shown that corresponds with expressed
-    if (expressed == "Acres_2017" ) {  //|| "Acres_2018" || "Acres_2019"
+    if (expressed == "Acres_2017") {  
         svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
         svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#6497b1");
         svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#005b96");
         svg.append("circle").attr("cx", 10).attr("cy", 220).attr("r", 6).style("fill", "#03396c");
         svg.append("circle").attr("cx", 10).attr("cy", 250).attr("r", 6).style("fill", "#011f4b");
-        svg.append("text").attr("x", 30).attr("y", 100).text("Acres Burned").style("font-size", "15px").attr("alignment-baseline","text-top");
-        svg.append("text").attr("x", 30).attr("y", 130).text("<1,000").style("font-size", "15px").attr("alignment-baseline","text-top");
-        svg.append("text").attr("x", 30).attr("y", 160).text("1,001-50,000").style("font-size", "15px").attr("alignment-baseline","text-top");
-        svg.append("text").attr("x", 30).attr("y", 190).text("50,001-250,000").style("font-size", "15px").attr("alignment-baseline","text-top");
-        svg.append("text").attr("x", 30).attr("y", 220).text("250,001-1,000,000").style("font-size", "15px").attr("alignment-baseline","text-top");
-        svg.append("text").attr("x", 30).attr("y", 250).text(">1,000,000").style("font-size", "15px").attr("alignment-baseline","text-top");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Acres Burned").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("<1,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("1,001-50,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("50,001-250,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 220).text("250,001-1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 250).text(">1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
+    } else if (expressed == "Acres_2018") {  
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#6497b1");
+        svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#005b96");
+        svg.append("circle").attr("cx", 10).attr("cy", 220).attr("r", 6).style("fill", "#03396c");
+        svg.append("circle").attr("cx", 10).attr("cy", 250).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Acres Burned").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("<1,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("1,001-50,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("50,001-250,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 220).text("250,001-1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 250).text(">1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
+    } else if (expressed == "Acres_2019") {  
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#6497b1");
+        svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#005b96");
+        svg.append("circle").attr("cx", 10).attr("cy", 220).attr("r", 6).style("fill", "#03396c");
+        svg.append("circle").attr("cx", 10).attr("cy", 250).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Acres Burned").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("<1,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("1,001-50,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("50,001-250,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 220).text("250,001-1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 250).text(">1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
     } else if (expressed == "PermitFee") {
         svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#6497b1");
         svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
@@ -388,14 +412,30 @@ function createLegend(expressed) {
         svg.append("text").attr("x", 30).attr("y", 100).text("Burn Programs").style("font-size", "15px").attr("alignment-baseline","middle");
         svg.append("text").attr("x", 30).attr("y", 130).text("Yes").style("font-size", "15px").attr("alignment-baseline","middle");
         svg.append("text").attr("x", 30).attr("y", 160).text("No").style("font-size", "15px").attr("alignment-baseline","middle");
-    /*     } else if (expressed == "Trend_2017" || "Trend_2018" || "Trend_2019") {
+    } else if (expressed == "Trend_2017") {
         svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
         svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
         svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#011f4b");
         svg.append("text").attr("x", 30).attr("y", 100).text("Fire Trends").style("font-size", "15px").attr("alignment-baseline","middle");
         svg.append("text").attr("x", 30).attr("y", 130).text("Down").style("font-size", "15px").attr("alignment-baseline","middle");
         svg.append("text").attr("x", 30).attr("y", 160).text("Same").style("font-size", "15px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 190).text("Up").style("font-size", "15px").attr("alignment-baseline","middle"); */
+        svg.append("text").attr("x", 30).attr("y", 190).text("Up").style("font-size", "15px").attr("alignment-baseline","middle"); 
+    } else if (expressed == "Trend_2018") {
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+        svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Fire Trends").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("Down").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("Same").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("Up").style("font-size", "15px").attr("alignment-baseline","middle"); 
+    } else if (expressed == "Trend_2019") {
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+        svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Fire Trends").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("Down").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("Same").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("Up").style("font-size", "15px").attr("alignment-baseline","middle"); 
     } else if (expressed == "LiabilityL") {
         svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#6497b1");
         svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
