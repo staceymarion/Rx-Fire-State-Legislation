@@ -1,5 +1,24 @@
 /***** NAVBAR *****/
 
+.col-md-3 {
+    padding-top: 20px;
+    padding-right: 0px;
+    padding-left: 30px;
+}
+.col-md-2 {
+    padding-top: 20px;
+    padding-left: 10px;
+    color: #0e6349;
+}
+
+.col-md-7 {
+    padding-top: 20px;
+}
+
+.map{
+    margin: 15px 0 0 0;
+    padding-bottom: 20px;
+}
 .navbar {
     background-color: rgba(20,20,20,0);
     border-radius: 0;
@@ -104,41 +123,8 @@
 
 /** map **/
 .states {
-    stroke: #CCC;
+    stroke: #ffffff;
     stroke-width: 1px;
-}
-
-/** Label Stuff **/
-.infoLabel {
-    position: absolute;
-    height: auto;
-    float: right;
-    display: inline;
-    margin-right: -200px;
-    padding: 20px;
-}
-
-.labelTitle {
-    position: absolute;
-    font-family: 'Roboto Slab', serif;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 24px;
-    background-color: #525252;
-    color:#fff;
-    z-index: 2;
-    width: 175px;
-    padding: 10px;
-    margin-top: -300px;
-    margin-left: 760px;
-}
-
-.labelContent {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    font-weight: lighter;
-    line-height: 20px;
-    padding-top: 10px;
 }
 
 /*** Basic Text Styles ***/
@@ -280,13 +266,13 @@ ul {
     float: left
 }
   
-  a {
+a {
     text-decoration: none;
 }
   
-  ul.h2 {
+ul.h2 {
     text-align: center;
-    margin: 15px auto;
+    /*margin: 15px auto;*/
     color: #FFFFFF;
 }
 
@@ -294,62 +280,155 @@ ul {
     float: left;
     width: 95%;
     max-width: 350px;
-    margin: 60px auto 20px;
+    margin: 20px auto 20px;
     background: #FFFFFF;
     border-radius: 5px;
+    padding-left:10px;
 }
-  .accordion-menu li.open .dropdownlink {
+.accordion-menu li.open .dropdownlink {
     color: #E15D44;
-  }
-    .fire {
-        transform: rotate(270deg);
-    }
+}
 
-    .fa-fa-chevron-down {
-      color: transparent;
-    }
-  
-  .accordion-menu li:last-child .dropdownlink {
+.accordion-menu li {
+    color: #0e6349;
+}
+.accordion-menu li:last-child .dropdownlink {
     border-bottom: 1px;
-  }
-  .dropdownlink {
+}
+.dropdownlink {
     cursor: pointer;
     display: block;
     padding: 15px 15px 15px 15px;
     font-size: 15px;
+    font-weight:normal;
     border-bottom: 1px solid #ccc;
-    color: #7FCDCD;
-    position: relative;
+    color: #0e6349; /*7FCDCD */
+    /* position: -webkit-sticky; /* needs to include -webkit */ 
     transition: all 0.5s ease-out;
-  }
-
-.fa-fa-chevron-down {
-      right:initial;
-      left:initial;
-      size:0px;
 }
-.fire {
-    right: 12px;
-    left: auto;
-  }
- 
 
-  .submenuItems {
+.dropdownlink i {
+        position: absolute;
+        top: 17px;
+        left: 16px;
+}
+
+.submenuItems {
     display: none;
-    background: #92A8D1;
-    li {
-      border-bottom: 1px;
-    }
-  }
-  
-  .submenuItems a {
+    background: #b3cde000;
+    /*background: #92A8D1; */
+} 
+.submenuItems li {
+      border-bottom: 1px solid #B6B6B6;
+} 
+
+.submenuItems a {
     display: block;
     color: #fff;
-    padding: 13px 13px 13px 45px;
+    padding: 15px 15px 15px 15px;
     transition: all 0.5s ease-out;
-    &:hover {
-      background-color: #88B04B;
-      color: #FFFFFF;
-    }
-  }
-  
+    background-color:#082e2e;
+    font-size: 14px;
+}
+.submenuItems a:hover {
+    background-color: #1b8d74; /* #ccdc39a4 */
+}
+
+/* label */
+/* .infolabel {
+    position: absolute;
+    height: auto;
+    width: 1200px;
+    color: #082e2e;
+    background-color: rgb(255, 255, 255);
+    border: solid thin #fff;
+    margin: 10px auto;
+    padding: 5px 10px;
+} */
+
+.infolabel .labelName {
+    margin: 0 20px 0 0;
+    padding: 0;
+    /*: inline-block;*/
+    display: table-header-group;
+    line-height: 1em;
+    text-align: center;
+    font-size: 26px;
+    /*color: #b3cde081;*/
+} 
+
+
+.labelTitle {
+    position: absolute;
+    font-size: 24px;
+    text-align: center;
+    line-height: 26px;
+    /*background-color: #525252;*/
+    /*color:#fff;*/
+    color: #082e2e;
+    z-index: 2;
+    width: 600px;
+    padding: 10px;
+    margin-top: -60%; /* -300px*/
+    margin-left: 9%; /* 760 px */
+}
+
+.labelContent {
+    font-size: 18px;
+}
+/** Label Stuff from Josh **/
+/* .infoLabel {
+    position: absolute;
+    height: auto;
+    float: right;
+    display: inline;
+    margin-right: -200px;
+    padding: 20px;
+}
+
+.labelTitle {
+    position: absolute;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    background-color: #525252;
+    color:#fff;
+    z-index: 2;
+    width: 175px;
+    padding: 10px;
+    margin-top: -300px;
+    margin-left: 760px;
+}
+
+.labelContent {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: lighter;
+    line-height: 20px;
+    padding-top: 10px;
+} */
+
+/* chartTitle */
+.chartTitle {
+    position: absolute;
+    height: 90px;
+    width: 1200px;
+    color: #082e2e;
+    background-color: rgb(255, 255, 255);
+    border: solid thin #fff;
+    margin: 10px auto;
+    padding: 5px 10px;
+}
+
+.infolabel h1 {
+    margin: 0 20px 0 0;
+    padding: 0;
+    display: inline-block;
+    line-height: 1em;
+    text-align: center;
+}
+
+.legend.style {
+    color: #0e6349;
+}

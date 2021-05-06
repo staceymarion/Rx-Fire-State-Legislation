@@ -66,62 +66,76 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">  <!-- ACCORDION MENU -->
-                <ul class="accordion-menu">
+            <div class="col-md-3" style="width: 20.833333%; flex: 0 0 20.833%; max-width: 20.833%;">  <!-- ACCORDION MENU -->
+                <ul class="accordion-menu">  <!-- ul = unordered list -->
+                  <li class = "attrli" id = "FireCounci">
+                    <div class="dropdownlink">State Fire Councils
+                      <i class="fire" aria-hidden="true"></i>
+                    </div>
+                  </li>
+                  <li class = "attrli" id = "BurnProgra">
+                    <div class="dropdownlink"> Burn Programs
+                      <i class="fire" aria-hidden="true"></i>
+                    </div>
+                  </li>
                     <li>
-                      <div class="dropdownlink">Acres Burned
+                      <div class="dropdownlink"> Acres Burned
                         <i class="fire" aria-hidden="true"></i>
                       </div>
                       <ul class="submenuItems">
-                        <li><a href="#">Forestry Acres 2017</a></li>
-                        <li><a href="#">Forestry Acres 2018</a></li> <!-- click function doesnt work yet-->
+                        <li class = "attrli" id = "Acres_2017"><a href="#accordion-menu">Forestry acres burned in 2017</a></li>
+                        <li class = "attrli" id = "Acres_2018"><a href="#accordion-menu">Forestry acres burned in 2018</a></li>
+                        <li class = "attrli" id = "Acres_2019"><a href="#accordion-menu">Forestry acres burned in 2019</a></li>
+                        <!--<li class = "attrli" id = "Acres_2019"><a href="#">Forestry acres burned in 2019</a></li>-->
                       </ul>
                     </li>
-                    <li>
-                      <div class="dropdownlink"> Application Fee
+                    <li class = "attrli" id = "PermitFee">
+                      <div class="dropdownlink"> Permit Application Fee
+                        <i class="fire" aria-hidden="true"></i>
+                      </div>
+                    </li>
+                    <li class = "attrli" id = "Time4Permi">
+                      <div class="dropdownlink"> Authorization Time
                         <i class="fire" aria-hidden="true"></i>
                       </div>
                     </li>
                     <li>
-                      <div class="dropdownlink"> Authorization Fee
+                      <div class="dropdownlink">Trends in Forestry Acres Burned
                         <i class="fire" aria-hidden="true"></i>
                       </div>
+                      <ul class="submenuItems">
+                        <li class = "attrli" id = "Trend_2017"><a href="#accordion-menu">Trend in 2017 forestry acres burned</a></li>
+                        <li class = "attrli" id = "Trend_2018"><a href="#accordion-menu">Trend in 2018 forestry acres burned</a></li>
+                        <li class = "attrli" id = "Trend_2019"><a href="#accordion-menu">Trend in 2019 forestry acres burned</a></li>
+                      </ul>
                     </li>
-                    <li>
-                      <div class="dropdownlink"> Burn Programs
-                        <i class="fire" aria-hidden="true"></i>
-                      </div>
-                    </li>
-                      <li>
-                      <div class="dropdownlink">Fire Trends
-                        <i class="fire" aria-hidden="true"></i>
-                      </div>
-                    </li>
-                      <li>
+                    <li class = "attrli" id = "LiabilityL">
                       <div class="dropdownlink">Liability Law
                         <i class="fire" aria-hidden="true"></i>
                       </div>
                     </li>
-                      <li>
+                    <li class = "attrli" id = "PermitRequ"> 
                       <div class="dropdownlink">Permit Requirements
-                        <i class="fire" aria-hidden="true"></i>
-                      </div>
-                    </li>
-                      <li>
-                      <div class="dropdownlink">State Fire Council
                         <i class="fire" aria-hidden="true"></i>
                       </div>
                     </li>
                   </ul>
             </div>
 
-            <div class="col-md-9"> <!-- WEB MAP -->
-                <div class="map">   
+            <div class="col-md-2" > <!-- LEGEND-->
+                <div class="legend">   
                 </div>
             </div>
-            
+            <div class="col-md-7" style="width: 62.499999%; flex: 0 0 62.499%; max-width: 62.499%;""> <!-- WEB MAP -->
+              <div class="map">   
+              </div>
+          </div>
             </div>
-    <div class="container">
+            <div class="row">
+              <br><br>
+            </div> 
+    <div class="container">  <!-- EMPTY BUMPER -->
+      <div class="row"></div>
     </div>
         </div>
     </div>
@@ -134,7 +148,7 @@
     <script type="text/javascript" src="lib/topojson.js"></script>
 
     <!-- working Javascript file -->
-    <script type="text/javascript" src="js/main_5-4_JR.js"></script> 
+    <script type="text/javascript" src="js/main.js"></script> 
     <!-- <script type="text/javascript" src="js/main.js"></script>  -->
     <!--<script type="text/javascript" src="js/main_sm.js"></script> -->  <!--- this is our working duplicate of our main.js; for use sandboxing with web page!-->
 </body>

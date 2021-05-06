@@ -227,18 +227,18 @@ function highlight(props){
         };
     };
 
-    var infoLabel = d3.select(".map")
+    var infoLabel = d3.select(".map")  
         .append("div")
         .attr("class", "infoLabel")
         .attr("id", props.name + "_label");
-    console.log(infoLabel);
-    var labelTitle = infoLabel.html(labelName)
+    //console.log(infoLabel);
+    var labelTitle = infoLabel.html(labelName) 
         .attr("class", "labelTitle");
-    console.log(labelTitle);
+    //console.log(labelTitle);
     var labelContent = labelTitle.append("div")
         .html(labelAttribute)
         .attr("class", "labelContent");
-    console.log(labelContent);
+    //console.log(labelContent);
 };
 
 function dehighlight(props){
