@@ -430,8 +430,23 @@ ul.h2 {
 }
 
 .legend {
-    padding-top: 35px;
+    margin: 20px 0;
+    padding: 0 0 0 10px;
+    background-color: rgb(255, 255, 255);
+}
+.legendText {
+    position: absolute;
+    font-size: 15px;
+    display:block;
+    height: 90px;
+    width: 95%;
+    color: #082e2e;
+    background-color: rgb(255, 255, 255);
+    border: solid thin #fff;
+    margin: 0;
+    padding: 15px 15px 15px 15px;
 }
 .legend.style {
     color: #0e6349;
 }
+

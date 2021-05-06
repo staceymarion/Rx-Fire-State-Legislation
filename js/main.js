@@ -443,22 +443,98 @@ function updateMap(attribute, usa) { // dont actually use usa
             }    
     });
 
-    //code for adding dynamic map title. comment out if you dont want
+  /*   //code for adding dynamic map title. comment out if you dont want
     var map = d3.select(".map")
     var chartTitle = map.append("text")
         .attr("x", 10)
         .attr("y", 30)
         .attr("class", "chartTitle")
-        .text("" + expressed + ""); 
+        .text("" + expressed + "");  */
     
     //update legend
-    //createLegend(expressed); // this code needs to match the chartTitle code
-    var legendBox = d3.select(".legend")
-    var legend = legendBox.append("text")
-        .attr("x", 10)
-        .attr("y", 30)
-        .attr("class", "legend")
-        .text("" + expressed + createLegend(expressed) + "");  // calling createLegend(expressed) and is returning undefined
+    var legend = d3.select(".legend")
+    var legendText = legend.append("text")
+        //.append("legendText")
+        //.attr("x", 10)
+        //.attr("y", 30)
+        .attr("class", "legendText")
+        .text("" + expressed + "");  // calling createLegend(expressed) and is returning undefined  */
+
+    var legendSvg = legend.append("svg")
+        .attr("class", "legendSvg")
+        .append("svg")
+        .attr("width", 240)
+        .attr("height", 400) 
+        if (expressed == "Acres_2017" || "Acres_2018" || "Acres_2019") {
+            legend.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+            legend.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#6497b1");
+            legend.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#005b96");
+            legend.append("circle").attr("cx", 10).attr("cy", 220).attr("r", 6).style("fill", "#03396c");
+            legend.append("circle").attr("cx", 10).attr("cy", 250).attr("r", 6).style("fill", "#011f4b");
+            legend.append("text").attr("x", 30).attr("y", 100).text("Acres Burned").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 130).text("<1,000").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 160).text("1,001-50,000").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 190).text("50,001-250,000").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 220).text("250,001-1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 250).text(">1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        } else if (expressed == "PermitFee") {
+            legend.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#6497b1");
+            legend.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+            legend.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#03396c");
+            legend.append("circle").attr("cx", 10).attr("cy", 220).attr("r", 6).style("fill", "#011f4b");
+            legend.append("text").attr("x", 30).attr("y", 100).text("Application Fee").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 130).text("N/A").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 160).text("Not Required").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 190).text("Sometimes").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 220).text("Required").style("font-size", "15px").attr("alignment-baseline","middle");
+        } else if (expressed == "Time4Permi") {
+            legend.append("circle").attr("cx", 10).attr("cy" ,130).attr("r", 6).style("fill", "#b3cde0");
+            legend.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+            legend.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#011f4b");
+            legend.append("text").attr("x", 30).attr("y", 100).text("Authorization Time").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 130).text("N/A").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 160).text("Day of Burn").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 190).text("More than 1 Day").style("font-size", "15px").attr("alignment-baseline","middle");
+        } else if (expressed == "BurnProgra") {
+            legend.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#011f4b");
+            legend.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#b3cde0");
+            legend.append("text").attr("x", 30).attr("y", 100).text("Burn Programs").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 130).text("Yes").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 160).text("No").style("font-size", "15px").attr("alignment-baseline","middle");
+        } else if (expressed == "Trend_2017" || "Trend_2018" || "Trend_2019") {
+            legend.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+            legend.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+            legend.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#011f4b");
+            legend.append("text").attr("x", 30).attr("y", 100).text("Fire Trends").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 130).text("Down").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 160).text("Same").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 190).text("Up").style("font-size", "15px").attr("alignment-baseline","middle");
+        } else if (expressed == "LiabilityL") {
+            legend.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#6497b1");
+            legend.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+            legend.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#03396c");
+            legend.append("circle").attr("cx", 10).attr("cy", 220).attr("r", 6).style("fill", "#011f4b");
+            legend.append("text").attr("x", 30).attr("y", 100).text("Liability Law").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 130).text("Strict Liability").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 160).text("Simple Negligence").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 190).text("Gross Negligence").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 220).text("No Law").style("font-size", "15px").attr("alignment-baseline","middle");
+        } else if (expressed == "PermitRequ") {
+            legend.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+            legend.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#011f4b");
+            legend.append("text").attr("x", 30).attr("y", 100).text("Permit Requirements").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 130).text("Required").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 160).text("Not Required").style("font-size", "15px").attr("alignment-baseline","middle");
+        } else if (expressed == "FireCounci") {
+            legend.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+            legend.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+            legend.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#011f4b");
+            legend.append("text").attr("x", 30).attr("y", 100).text("State Fire Council").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 130).text("Yes").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 160).text("No").style("font-size", "15px").attr("alignment-baseline","middle");
+            legend.append("text").attr("x", 30).attr("y", 190).text("Regional").style("font-size", "15px").attr("alignment-baseline","middle");
+        }; 
+
 };
 
 })(); // last line of main.js
