@@ -57,7 +57,7 @@ function setMap(){
     var path = d3.geoPath() //path generator
         .projection(projection);
     
-    //createLegend(expressed); // call under the updateMap instead. 
+    createLegend(expressed); // call under the updateMap instead. 
 
     $.getJSON("data/usaStates1.topojson", callback); // all data joined in topojson
     
