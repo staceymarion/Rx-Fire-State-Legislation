@@ -348,7 +348,7 @@ function createLegend(expressed) {
     var svg = d3.select(".legend")   // scg   // .legendText 
         .append("svg")  //"svg"
         .attr("width", 240)
-        .attr("height", 300)
+        .attr("height", 400)
         .attr("class", "svg");   //"svg"
     
     //if, else if statement to choose the legend to be shown that corresponds with expressed
@@ -358,12 +358,12 @@ function createLegend(expressed) {
         svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#005b96");
         svg.append("circle").attr("cx", 10).attr("cy", 220).attr("r", 6).style("fill", "#03396c");
         svg.append("circle").attr("cx", 10).attr("cy", 250).attr("r", 6).style("fill", "#011f4b");
-        svg.append("text").attr("x", 30).attr("y", 100).text("Acres Burned").style("font-size", "15px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 130).text("<1,000").style("font-size", "15px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 160).text("1,001-50,000").style("font-size", "15px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 190).text("50,001-250,000").style("font-size", "15px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 220).text("250,001-1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 250).text(">1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Acres Burned").style("font-size", "15px").attr("alignment-baseline","text-top");
+        svg.append("text").attr("x", 30).attr("y", 130).text("<1,000").style("font-size", "15px").attr("alignment-baseline","text-top");
+        svg.append("text").attr("x", 30).attr("y", 160).text("1,001-50,000").style("font-size", "15px").attr("alignment-baseline","text-top");
+        svg.append("text").attr("x", 30).attr("y", 190).text("50,001-250,000").style("font-size", "15px").attr("alignment-baseline","text-top");
+        svg.append("text").attr("x", 30).attr("y", 220).text("250,001-1,000,000").style("font-size", "15px").attr("alignment-baseline","text-top");
+        svg.append("text").attr("x", 30).attr("y", 250).text(">1,000,000").style("font-size", "15px").attr("alignment-baseline","text-top");
     } else if (expressed == "PermitFee") {
         svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#6497b1");
         svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
@@ -421,7 +421,7 @@ function createLegend(expressed) {
         svg.append("text").attr("x", 30).attr("y", 160).text("No").style("font-size", "15px").attr("alignment-baseline","middle");
         svg.append("text").attr("x", 30).attr("y", 190).text("Regional").style("font-size", "15px").attr("alignment-baseline","middle");
     };
-
+    
 };
 
 //dropdown change event handler
@@ -460,15 +460,18 @@ function updateMap(attribute, usa) { // dont actually use usa
         //.attr("x", 10)
         //.attr("y", 30)
         .attr("class", "legendText")
-        .text("" + expressed + "")  // calling createLegend(expressed) and is returning undefined  */
+        //.text("" + expressed + "")  // duplicate legend title
         .style ("fill", function(d) {
             var value = expressed;
                 if(value) {
+                    d3.select(".svg").remove();
                     return createLegend(expressed);
                 } else {
                     return "#ccc";
                 }
         });
+    
+ 
 /*     var legendSvg = legend.append("svg")
         .attr("class", "legendSvg")
         .append("svg")

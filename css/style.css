@@ -430,19 +430,20 @@ ul.h2 {
 }
 
 .legend {
-    margin: 20px 0;
+    margin: 20px 0; 
     padding: 0 0 0 0px;
-    background-color: rgb(255, 255, 255);
+    height: 100%;
+    /*background-color: rgb(124, 27, 27);*/
 }
+
 .legendText {
     position: absolute;
     font-size: 15px;
     display:block;
-    height: auto;
+    height: 0px;
     width: 95%;
     color: #082e2e;
-    /*background-color: rgb(255, 255, 255);*/
-    background-color:#ebd122;
+    /*background-color: rgb(255, 255, 255);*/ /* this is a carryover element
     /*border: solid thin #fff;*/
     margin: 0;
     padding: 15px 15px 15px 15px;
@@ -462,12 +463,13 @@ ul.h2 {
 
 .svg {
     position: absolute;
+    border-radius: 5px;
     vertical-align: top;
-    background-color: rgb(255, 255, 255);
+    /*background-color: #ffffff;*/
     font-size: 15px;
-    display:float;
+    display:inline-block;
     width: 95%;
     color: #082e2e;
-    margin-top: 0px;
+    margin-top: 0px;  /* remove margin-top for opaque legend to cover */
     padding: 15px 15px 15px 15px;
 }
