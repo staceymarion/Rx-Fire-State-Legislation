@@ -453,6 +453,12 @@ function updateMap(attribute, usa) { // dont actually use usa
     
     //update legend
     //createLegend(expressed); // this code needs to match the chartTitle code
+    var legendBox = d3.select(".legend")
+    var legend = legendBox.append("text")
+        .attr("x", 10)
+        .attr("y", 30)
+        .attr("class", "legend")
+        .text("" + expressed + createLegend(expressed) + "");  // calling createLegend(expressed) and is returning undefined
 };
 
 })(); // last line of main.js

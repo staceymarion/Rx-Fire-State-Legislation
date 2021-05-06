@@ -429,6 +429,9 @@ ul.h2 {
     text-align: center;
 }
 
+.legend {
+    padding-top: 35px;
+}
 .legend.style {
     color: #0e6349;
 }
