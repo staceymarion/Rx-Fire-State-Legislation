@@ -19,6 +19,8 @@ var attrArray = ["Acres_2017",
 
 var expressed = attrArray[11]; // initial attribute expressed
 
+var stateName = "NaN";  // pseudoglobal variable to track state activation (selection). default means no state selected
+
 var attrcol = {
     Acres_2017: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b"},
     Acres_2018: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b"}, 
@@ -82,6 +84,7 @@ function setMap(){
             var id = $(this).attr("id");
             //console.log(id);
             updateMap(id);
+       
         });
 
     }; // end of callback
@@ -89,15 +92,26 @@ function setMap(){
     //accordion menu
     $(function() {
         var Accordion = function(el, multiple) {
-        this.el = el || {};
-        // more then one submenu open?
-        this.multiple = multiple || false;
-    
-        var dropdownlink = this.el.find('.dropdownlink');
-        dropdownlink.on('click',
-                        { el: this.el, multiple: this.multiple },
-                        this.dropdown);
+            this.el = el || {};
+            // more then one submenu open?
+            this.multiple = multiple || false;
+        
+            var dropdownlink = this.el.find('.dropdownlink');
+            //if (('.attrli open').removeClass("open"));
+            dropdownlink.on('click',
+                            { el: this.el, multiple: this.multiple },
+                            this.dropdown);
+            // if (this.multiple) {
+            //     $el.find('.dropdownlink').prev($this).removeClass('attrli open')
+            //    }; 
+            // if (this.multiple) {
+            //     $el.find('.dropdownlink').prev($this).removeClass('open')
+            // };
+            //      $el.find('.dropdownlink').removeClass('attrli open')
+            // };                  
         };
+
+        //$el.find('.dropdownlink').prev($this).removeClass('open');
     
         Accordion.prototype.dropdown = function(e) {
         var $el = e.data.el,
@@ -107,8 +121,8 @@ function setMap(){
         console.log($this);  // S.fn.init div.dropdownlink
         console.log($next); //prevObject:S.fn.init(1)
     
-        $next.slideToggle();  // this opens the submenu items
-        $this.parent().toggleClass('open'); // commenting this out removes highlighting for all
+        $next.slideToggle(); // this opens the submenu items
+        $this.parent().toggleClass('open');  //commented out removes highlighting for all
     
         if(!e.data.multiple) {
             //show only one menu at the same time
@@ -128,9 +142,12 @@ function setEnumerationUnits(americanStates, map, path) {
         .enter()
         .append("path")
         .attr("class", function (d) {
-            return "states " + d.properties.name;
+            return "states " + d.properties.name.replace(" ", "_");  // "state "  so .states selects all state elements
             //console.log("states " + d.properties.name.replace(".","")); 
         })
+        .attr("id", function (d) {
+            return d.properties.name.replace(" ", "_");
+        }) // creates ID tag for states
         .attr("d", path)  // added
         .style("fill", function(d){
             var value = d.properties[expressed];   
@@ -143,19 +160,165 @@ function setEnumerationUnits(americanStates, map, path) {
                 return "#ccc";  
             }    
         })
+        //highlight on mouseover
         .on("mouseover", function(event, d){
             highlight(d.properties);
         })
         .on("mouseout", function(event, d){
             dehighlight(d.properties);
-        });
+        })
+        // add click function
+        .on("click", function(event, d){
+            activate(d.properties);
+        })
+        // .on("click", function(event, d){
+        //     deactivate(d.properties);
+        // });
         //.on("mousemove", moveLabel)
         var desc = states.append("desc")
             .text('{"stroke": "#ffffff", "stroke-width": "1px"}') // upon mouseover, style returns to stroke #ccc
 };
 
+// function that activates .on(click)
+function activate(props) {
+    // this gets id of clicked state
+    $(".states").click(function() {       
+        stateName = this.id;    // assign id of clicked state to the global variable, referring to "id" in setEnumerationUnits 
+        console.log(stateName);  // returns undefined
+    });
+    
+/*     var propsName = props.name.replace(" ",".")
+    //console.log(propsName);
+    var selected = d3.selectAll("." + propsName).raise() // issue with both "Virginia" and "West Virginia" highlighting at the same time
+        .style("stroke", "white")
+        .style("stroke-width", "3"); */
+
+
+
+    //remove (old) label info with click
+    d3.select(".infoLabel")
+        .remove(); 
+    d3.select(".labelTitle")
+        .remove(); 
+    d3.select(".labelContent")
+        .remove();  
+
+    var labelName = props.name;
+    var labelAttribute;    
+    var link = props["Link"];
+    var linktext = props["fcName"];
+    var linkInternal = linktext.link("firecolinks.html");
+
+    if (expressed == "Acres_2017") {
+        if (props[expressed] == 1) {
+            labelAttribute = "<1,000 forestry acres burned in 2017";
+        } else if (props[expressed] == 2) {
+            labelAttribute = "1,001-50,000 forestry acres burned in 2017";
+        } else if (props[expressed] == 3) {
+            labelAttribute = "50,001-250,000 forestry acres burned in 2017";
+        } else if (props[expressed] == 4) {
+            labelAttribute = "250,001-1,000,000 forestry acres burned in 2017";
+        } else if (props[expressed] == 5) {
+            labelAttribute = ">1,000,000 forestry acres burned in 2017";
+        };
+    } else if (expressed == "Acres_2018") {
+        if (props[expressed] == 1) {
+            labelAttribute = "<1,000 forestry acres burned in 2018";
+        } else if (props[expressed] == 2) {
+            labelAttribute = "1,001-50,000 forestry acres burned in 2018";
+        } else if (props[expressed] == 3) {
+            labelAttribute = "50,001-250,000 forestry acres burned in 2018";
+        } else if (props[expressed] == 4) {
+            labelAttribute = "250,001-1,000,000 forestry acres burned in 2018";
+        } else if (props[expressed] == 5) {
+            labelAttribute = ">1,000,000 forestry acres burned in 2018";
+        };
+    } else if (expressed == "Acres_2019") {
+        if (props[expressed] == 1) {
+            labelAttribute = "<1,000 forestry acres burned in 2019";
+        } else if (props[expressed] == 2) {
+            labelAttribute = "1,001-50,000 forestry acres burned in 2019";
+        } else if (props[expressed] == 3) {
+            labelAttribute = "50,001-250,000 forestry acres burned in 2019";
+        } else if (props[expressed] == 4) {
+            labelAttribute = "250,001-1,000,000 forestry acres burned in 2019";
+        } else if (props[expressed] == 5) {
+            labelAttribute = ">1,000,000 forestry acres burned in 2019";
+        };
+    } else if (expressed == "PermitFee") {
+        if (props[expressed] == "Required") {
+            labelAttribute = "Fee required with permit application";
+        } else if (props[expressed] == "Sometimes") {
+            labelAttribute = "Fee sometimes required with permit application";
+        } else if (props[expressed] == "Not Required") {
+            labelAttribute = "No fee with permit application";
+        } else if (props[expressed] == "N/A") {
+            labelAttribute = "Not applicable";
+        };
+    } else if (expressed == "Time4Permi") {
+        if (props[expressed] == 1) {
+            labelAttribute = "Not applicable";
+        } else if (props[expressed] == 2) {
+            labelAttribute = "Permit must be obtained at least day of burn";
+        } else if (props[expressed] == 3) {
+            labelAttribute = "Permit must be obtained more than 1 day before burn";
+        };
+    } else if (expressed == "BurnProgra") {
+        if (props[expressed] == "Yes") {
+            labelAttribute = "Has a state-certified burn program"; 
+        } else if (props[expressed] == "No") {
+            labelAttribute = "Does not have state-certified burn program";
+        };
+    } else if (expressed == "Trend_2017") {
+        labelAttribute = "Trend in forestry acres burned, 2017: " + props[expressed];
+    } else if (expressed == "Trend_2018") {
+        labelAttribute = "Trend in forestry acres burned, 2018: " + props[expressed];
+    } else if (expressed == "Trend_2019") {
+        labelAttribute = "Trend in forestry acres burned, 2019: " + props[expressed];
+    } else if (expressed == "LiabilityL") {
+        if (props[expressed] == 1) {
+            labelAttribute = "Strict Liability";
+        } else if (props[expressed] == 2) {
+            labelAttribute = "Simple Negligence";
+        } else if (props[expressed] == 3) {
+            labelAttribute = "Gross Negligence";
+        } else if (props[expressed] == 4) {
+            labelAttribute = "No law pertaining to fire liability or unknown";
+        };
+    } else if (expressed == "PermitRequ") {
+        labelAttribute = "Permit " + props[expressed] + " to burn";
+    } else if (expressed == "FireCounci") {
+        if (props[expressed] == "Yes" ) {   
+            //expressed = "fcName";         
+            labelAttribute = " " + "<a href=\'" + link+"\'>"+ linktext + "</a>"; 
+        } else if (props[expressed] == "No") {
+            labelAttribute = "No state fire council";
+        } else if (props[expressed] == "Regional") {
+            labelAttribute = " "+ linkInternal ;  // linkInternal links to interal page firecolinks.html
+        };
+    };
+    //create label
+    var infoLabel = d3.select(".map")
+        .append("div")
+        .attr("class", "infoLabel")
+        .attr("id", stateName);   // .attr("id", stateName + "_label");
+            
+    //console.log(infoLabel);
+    var labelTitle = infoLabel.html(labelName) 
+        .attr("class", "labelTitle");
+    //console.log(labelTitle);
+    var labelContent = labelTitle.append("div")
+        .html(labelAttribute)
+        .attr("class", "labelContent");
+    //console.log(labelContent);
+    
+  
+
+};
+
+//take most code from highight(props) and transfer to activate()
 function highlight(props){
-    var propsName = props.name.replace(" ",".")
+    var propsName = props.name.replace(" ","_")   
     //console.log(propsName);
     var selected = d3.selectAll("." + propsName).raise() // issue with both "Virginia" and "West Virginia" highlighting at the same time
         .style("stroke", "white")
@@ -166,7 +329,7 @@ function highlight(props){
     //dynamic map title
     //setLabel(props); 
     
-    //dynamic info label pop-up
+ /*    //dynamic info label pop-up
     var labelName = props.name;
     var labelAttribute;
 
@@ -257,9 +420,9 @@ function highlight(props){
         } else if (props[expressed] == "Regional") {
             labelAttribute = " " + props["fcName"]; //+ " " + props["Link"]; 
         };
-    };
+    }; */
 
-    var infoLabel = d3.select(".map")
+  /*   var infoLabel = d3.select(".map")
         .append("div")
         .attr("class", "infoLabel")
         .attr("id", props.name + "_label");
@@ -270,11 +433,12 @@ function highlight(props){
     var labelContent = labelTitle.append("div")
         .html(labelAttribute)
         .attr("class", "labelContent");
-    //console.log(labelContent);
+    //console.log(labelContent); */
 }; 
 
 function dehighlight(props){
-    var propsName = props.name.replace(" ",".")
+    // add something like if != selected
+    var propsName = props.name.replace(" ","_")
     var selected = d3.selectAll("." + propsName)
         .style("stroke", function(){
             return getStyle(this, "stroke")
@@ -292,13 +456,13 @@ function dehighlight(props){
 
         return styleObject[styleName];
     };
-    //remove label info with mouseout 
+/*     //remove label info with mouseout 
     d3.select(".infoLabel")
         .remove(); 
     d3.select(".labelTitle")
         .remove(); 
     d3.select(".labelContent")
-        .remove();   
+        .remove();    */
 };
 
 //function to create dynamic label, activated under function highlight -- move to fxn related to menu selection 
