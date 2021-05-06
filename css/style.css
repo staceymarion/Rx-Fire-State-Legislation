@@ -88,18 +88,27 @@
     text-align: left;
     color: rgba(255, 255, 255);
     background: rgba(255,255,255,0);
-    padding: 2%;
+    padding: 1%;
     border-radius: 0px;
 }
 
 .jumbotron h2 {
     font-family: "Krona One", sans-serif;
-    font-size: 80px;
-    color: rgb(241, 248, 247);
+    font-size: 90px;
+    color: rgba(241, 248, 247, 0.651);
+    margin-top: -20px;
 }
 
+.jumbotron h3 {
+    font-family: "Krona One", sans-serif;
+    font-size: 60px;
+    color: rgb(241, 248, 247);
+}
 .jumbotron p {
     font-family: "Krona One";
+    text-align:right;
+    font-size: 28px;
+    color: rgb(231, 231, 231);
 }
 
 /*** Buttons ***/
@@ -360,21 +369,22 @@ ul.h2 {
 
 .labelTitle {
     position: absolute;
-    font-size: 24px;
+    font-size: 30px;
     text-align: center;
-    line-height: 26px;
+    line-height: 125%;
     /*background-color: #525252;*/
     /*color:#fff;*/
     color: #082e2e;
     z-index: 2;
     width: 600px;
     padding: 10px;
-    margin-top: -60%; /* -300px*/
+    margin-top: -525px; /* -300px*/
     margin-left: 9%; /* 760 px */
 }
 
 .labelContent {
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 20px;
 }
 /** Label Stuff from Josh **/
 /* .infoLabel {

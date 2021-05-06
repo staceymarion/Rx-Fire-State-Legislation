@@ -248,11 +248,11 @@ function highlight(props){
     } else if (expressed == "FireCounci") {
         if (props[expressed] == "Yes" ) {   
             //expressed = "fcName";         
-            labelAttribute = "State fire council: " + props["fcName"]; //+ " " + props["Link"];
+            labelAttribute = " " + props["fcName"]; //+ " " + props["Link"];
         } else if (props[expressed] == "No") {
             labelAttribute = "No state fire council";
         } else if (props[expressed] == "Regional") {
-            labelAttribute = "Multiple regional fire councils: " + props["fcName"]; //+ " " + props["Link"]; 
+            labelAttribute = " " + props["fcName"]; //+ " " + props["Link"]; 
         };
     };
 
