@@ -56,6 +56,8 @@ function setMap(){
     var path = d3.geoPath() //path generator
         .projection(projection);
     
+    createLegend(expressed);
+
     $.getJSON("data/usaStates1.topojson", callback); // all data joined in topojson
 
     function callback(data){
@@ -111,8 +113,7 @@ function setEnumerationUnits(americanStates, map, path) {
         .attr("d", path)  // added
         .style("fill", function(d){
             var value = d.properties[expressed];   // working!!!!!!!!
-            console.log(value);
-            console.log(expressed); 
+            
             if(value) {
                 //console.log(attrcol[expressed][d.properties[expressed]]);
                 return attrcol[expressed][d.properties[expressed]];  // working!!!!!!
@@ -231,6 +232,7 @@ function highlight(props){
         .append("div")
         .attr("class", "infoLabel")
         .attr("id", props.name + "_label");
+<<<<<<< Updated upstream
     //console.log(infoLabel);
     var labelTitle = infoLabel.html(labelName) 
         .attr("class", "labelTitle");
@@ -239,6 +241,16 @@ function highlight(props){
         .html(labelAttribute)
         .attr("class", "labelContent");
     //console.log(labelContent);
+=======
+    
+    var labelTitle = infoLabel.html(labelName)
+        .attr("class", "labelTitle");
+   
+    var labelContent = labelTitle.append("div")
+        .html(labelAttribute)
+        .attr("class", "labelContent");
+  
+>>>>>>> Stashed changes
 };
 
 function dehighlight(props){
@@ -263,6 +275,88 @@ function dehighlight(props){
     d3.select(".infoLabel")
         .remove();
 };
+
+
+//code for da legend
+function createLegend(expressed) {
+    var svg = d3.select(".legend")
+        .append("svg")
+        .attr("width", 240)
+        .attr("height", 400);
+    
+    //if, else if statement to choose the legend to be shown that corresponds with expressed
+    if (expressed == "Acres_2017" || "Acres_2018" || "Acres_2019") {
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#6497b1");
+        svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#005b96");
+        svg.append("circle").attr("cx", 10).attr("cy", 220).attr("r", 6).style("fill", "#03396c");
+        svg.append("circle").attr("cx", 10).attr("cy", 250).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Acres Burned").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("<1,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("1,001-50,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("50,001-250,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 220).text("250,001-1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 250).text(">1,000,000").style("font-size", "15px").attr("alignment-baseline","middle");
+    } else if (expressed == "PermitFee") {
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#6497b1");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+        svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#03396c");
+        svg.append("circle").attr("cx", 10).attr("cy", 220).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Application Fee").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("N/A").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("Not Required").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("Sometimes").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 220).text("Required").style("font-size", "15px").attr("alignment-baseline","middle");
+    } else if (expressed == "Time4Permi") {
+        svg.append("circle").attr("cx", 10).attr("cy" ,130).attr("r", 6).style("fill", "#b3cde0");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+        svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Authorization Time").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("N/A").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("Day of Burn").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("More than 1 Day").style("font-size", "15px").attr("alignment-baseline","middle");
+    } else if (expressed == "BurnProgra") {
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#011f4b");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#b3cde0");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Burn Programs").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("Yes").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("No").style("font-size", "15px").attr("alignment-baseline","middle");
+    } else if (expressed == "Trend_2017" || "Trend_2018" || "Trend_2019") {
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+        svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Fire Trends").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("Down").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("Same").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("Up").style("font-size", "15px").attr("alignment-baseline","middle");
+    } else if (expressed == "LiabilityL") {
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#6497b1");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+        svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#03396c");
+        svg.append("circle").attr("cx", 10).attr("cy", 220).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Liability Law").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("Strict Liability").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("Simple Negligence").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("Gross Negligence").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 220).text("No Law").style("font-size", "15px").attr("alignment-baseline","middle");
+    } else if (expressed == "PermitRequ") {
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("Permit Requirements").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("Required").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("Not Required").style("font-size", "15px").attr("alignment-baseline","middle");
+    } else if (expressed == "FireCounci") {
+        svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 6).style("fill", "#b3cde0");
+        svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 6).style("fill", "#005b96");
+        svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 6).style("fill", "#011f4b");
+        svg.append("text").attr("x", 30).attr("y", 100).text("State Fire Council").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 130).text("Yes").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 160).text("No").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 190).text("Regional").style("font-size", "15px").attr("alignment-baseline","middle");
+    };
+
+};
+
 
 
 })(); // last line of main.js
