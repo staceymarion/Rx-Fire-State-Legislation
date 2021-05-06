@@ -96,11 +96,7 @@ function setMap(){
             var dropdownlink = this.el.find('.dropdownlink');
             dropdownlink.on('click',
                             { el: this.el, multiple: this.multiple },
-                            this.dropdown);
-            
-            if (this.multiple) {
-                this.el.find('.dropdownlink').removeClass('click')
-            }; 
+                            this.dropdown); 
         };
     
         Accordion.prototype.dropdown = function(e) {
@@ -115,6 +111,7 @@ function setMap(){
             if (!e.data.multiple) {
                 //show only one menu at the same time
                 $el.find('.submenuItems').not($next).slideUp().parent().removeClass('open');
+                $el.find('.dropdownlink').not($this).parent().removeClass('open'); //!@#$%^&*^%$#@$%^&%$#@$%^&*^%$#%^&*^%$#@ //new code that should be dehighlighting
             };
         };
     
