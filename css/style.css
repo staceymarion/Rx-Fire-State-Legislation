@@ -431,22 +431,43 @@ ul.h2 {
 
 .legend {
     margin: 20px 0;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 0px;
     background-color: rgb(255, 255, 255);
 }
 .legendText {
     position: absolute;
     font-size: 15px;
     display:block;
-    height: 90px;
+    height: auto;
     width: 95%;
     color: #082e2e;
-    background-color: rgb(255, 255, 255);
-    border: solid thin #fff;
+    /*background-color: rgb(255, 255, 255);*/
+    background-color:#ebd122;
+    /*border: solid thin #fff;*/
     margin: 0;
     padding: 15px 15px 15px 15px;
 }
-.legend.style {
-    color: #0e6349;
-}
+/* .legendImage {
+    background-color: #0e6349;
+    position:absolute;
+    font-size: 15px;
+    display:block;
+    height: 90px;
+    width: 95%;
+    color: #082e2e;
+    margin-top: 90px;
+    padding: 15px 15px 15px 15px;
+} */
 
+
+.svg {
+    position: absolute;
+    vertical-align: top;
+    background-color: rgb(255, 255, 255);
+    font-size: 15px;
+    display:float;
+    width: 95%;
+    color: #082e2e;
+    margin-top: 0px;
+    padding: 15px 15px 15px 15px;
+}
