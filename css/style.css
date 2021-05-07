@@ -16,7 +16,7 @@
 }
 
 .map{
-    margin: 15px 0 0 0;
+    margin: 20px 0 0 0;
     padding-bottom: 20px;
 }
 .navbar {
@@ -155,7 +155,7 @@ hr {
 }
 
 p {
-    font-size: 20px;
+    font-size: 18px;
 }
 .sources {
     padding-left: 50pt;
@@ -167,9 +167,9 @@ p {
 }
 .credits{
     font-style:italic;
-    font-size: smaller;
+    font-size: 15px;
     letter-spacing:normal;
-    color:#003a3583;
+    color:#003a35b0;
 }
 .indented {
     padding-left: 80pt;
@@ -194,7 +194,7 @@ a {
 }
 
 a:hover {
-    color: #ebd122;
+    color: #77c003;
 }
 
 body {
@@ -378,7 +378,7 @@ ul.h2 {
     z-index: 2;
     width: 600px;
     padding: 10px;
-    margin-top: -525px; /* -300px*/
+    margin-top: -545px; /* -300px*/
     margin-left: 9%; /* 760 px */
 }
 

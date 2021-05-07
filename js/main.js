@@ -21,7 +21,7 @@ var expressed = attrArray[11]; // initial attribute expressed
 
 var stateName = "NaN";  // pseudoglobal variable to track state activation (selection). default means no state selected
 
-//green
+//green scheme
 var attrcol = {
     Acres_2017: {1: "#D8F2D0", 2: "#AFDBA8", 3: "#74C476", 4: "#319450", 5: "#145A32"},
     Acres_2018: {1: "#D8F2D0", 2: "#AFDBA8", 3: "#74C476", 4: "#319450", 5: "#145A32"}, 
@@ -38,7 +38,7 @@ var attrcol = {
     //Link: {" ": "#ccc"},  // if any value - color . skip for now
     //fcName: {},  // if any value - color. skip for now
 };
-//blue
+//blue option
 /* var attrcol = {
     Acres_2017: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b"},
     Acres_2018: {1: "#b3cde0", 2: "#6497b1", 3: "#005b96", 4: "#03396c", 5: "#011f4b"}, 
@@ -61,7 +61,7 @@ window.onload = setMap();
 //set up choropleth map
 function setMap(){ 
 
-    var width = 700,
+    var width = 800,
         height = 500;
     
     var map = d3.select(".map") // class map in bootstrap column 
@@ -71,7 +71,7 @@ function setMap(){
         .attr("height", height);
 
     var projection = d3.geoAlbersUsa()
-        .scale(900)
+        .scale(980)
         .translate([width / 2, height / 2]);
         
     var path = d3.geoPath() //path generator
@@ -344,114 +344,6 @@ function highlight(props){
     //console.log(props.name);           
     //console.log(selected); 
      
-    //dynamic map title
-    //setLabel(props); 
-    
- /*    //dynamic info label pop-up
-    var labelName = props.name;
-    var labelAttribute;
-
-    if (expressed == "Acres_2017") {
-        if (props[expressed] == 1) {
-            labelAttribute = "<1,000 forestry acres burned in 2017";
-        } else if (props[expressed] == 2) {
-            labelAttribute = "1,001-50,000 forestry acres burned in 2017";
-        } else if (props[expressed] == 3) {
-            labelAttribute = "50,001-250,000 forestry acres burned in 2017";
-        } else if (props[expressed] == 4) {
-            labelAttribute = "250,001-1,000,000 forestry acres burned in 2017";
-        } else if (props[expressed] == 5) {
-            labelAttribute = ">1,000,000 forestry acres burned in 2017";
-        };
-    } else if (expressed == "Acres_2018") {
-        if (props[expressed] == 1) {
-            labelAttribute = "<1,000 forestry acres burned in 2018";
-        } else if (props[expressed] == 2) {
-            labelAttribute = "1,001-50,000 forestry acres burned in 2018";
-        } else if (props[expressed] == 3) {
-            labelAttribute = "50,001-250,000 forestry acres burned in 2018";
-        } else if (props[expressed] == 4) {
-            labelAttribute = "250,001-1,000,000 forestry acres burned in 2018";
-        } else if (props[expressed] == 5) {
-            labelAttribute = ">1,000,000 forestry acres burned in 2018";
-        };
-    } else if (expressed == "Acres_2019") {
-        if (props[expressed] == 1) {
-            labelAttribute = "<1,000 forestry acres burned in 2019";
-        } else if (props[expressed] == 2) {
-            labelAttribute = "1,001-50,000 forestry acres burned in 2019";
-        } else if (props[expressed] == 3) {
-            labelAttribute = "50,001-250,000 forestry acres burned in 2019";
-        } else if (props[expressed] == 4) {
-            labelAttribute = "250,001-1,000,000 forestry acres burned in 2019";
-        } else if (props[expressed] == 5) {
-            labelAttribute = ">1,000,000 forestry acres burned in 2019";
-        };
-    } else if (expressed == "PermitFee") {
-        if (props[expressed] == "Required") {
-            labelAttribute = "Fee required with permit application";
-        } else if (props[expressed] == "Sometimes") {
-            labelAttribute = "Fee sometimes required with permit application";
-        } else if (props[expressed] == "Not Required") {
-            labelAttribute = "No fee with permit application";
-        } else if (props[expressed] == "N/A") {
-            labelAttribute = "Not applicable";
-        };
-    } else if (expressed == "Time4Permi") {
-        if (props[expressed] == 1) {
-            labelAttribute = "Not applicable";
-        } else if (props[expressed] == 2) {
-            labelAttribute = "Permit must be obtained at least day of burn";
-        } else if (props[expressed] == 3) {
-            labelAttribute = "Permit must be obtained more than 1 day before burn";
-        };
-    } else if (expressed == "BurnProgra") {
-        if (props[expressed] == "Yes") {
-            labelAttribute = "Has a state-certified burn program"; 
-        } else if (props[expressed] == "No") {
-            labelAttribute = "Does not have state-certified burn program";
-        };
-    } else if (expressed == "Trend_2017") {
-        labelAttribute = "Trend in forestry acres burned, 2017: " + props[expressed];
-    } else if (expressed == "Trend_2018") {
-        labelAttribute = "Trend in forestry acres burned, 2018: " + props[expressed];
-    } else if (expressed == "Trend_2019") {
-        labelAttribute = "Trend in forestry acres burned, 2019: " + props[expressed];
-    } else if (expressed == "LiabilityL") {
-        if (props[expressed] == 1) {
-            labelAttribute = "Strict Liability";
-        } else if (props[expressed] == 2) {
-            labelAttribute = "Simple Negligence";
-        } else if (props[expressed] == 3) {
-            labelAttribute = "Gross Negligence";
-        } else if (props[expressed] == 4) {
-            labelAttribute = "No law pertaining to fire liability or unknown";
-        };
-    } else if (expressed == "PermitRequ") {
-        labelAttribute = "Permit " + props[expressed] + " to burn";
-    } else if (expressed == "FireCounci") {
-        if (props[expressed] == "Yes" ) {   
-            //expressed = "fcName";         
-            labelAttribute = " " + props["fcName"]; //+ " " + props["Link"];
-        } else if (props[expressed] == "No") {
-            labelAttribute = "No state fire council";
-        } else if (props[expressed] == "Regional") {
-            labelAttribute = " " + props["fcName"]; //+ " " + props["Link"]; 
-        };
-    }; */
-
-  /*   var infoLabel = d3.select(".map")
-        .append("div")
-        .attr("class", "infoLabel")
-        .attr("id", props.name + "_label");
-    //console.log(infoLabel);
-    var labelTitle = infoLabel.html(labelName) 
-        .attr("class", "labelTitle");
-    //console.log(labelTitle);
-    var labelContent = labelTitle.append("div")
-        .html(labelAttribute)
-        .attr("class", "labelContent");
-    //console.log(labelContent); */
 }; 
 
 function dehighlight(props){
@@ -557,26 +449,26 @@ function createLegend(expressed) {
         svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 8).style("fill", "#D8F2D0").style("stroke", "black").style("stroke-width", .5);
         svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 8).style("fill", "#74C476").style("stroke", "black").style("stroke-width", .5);
         svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 8).style("fill", "#145A32").style("stroke", "black").style("stroke-width", .5);
-        svg.append("text").attr("x", 7).attr("y", 100).text("Fire Trends").style("font-size", "20px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 132).text("Down").style("font-size", "16px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 162).text("Same").style("font-size", "16px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 192).text("Up").style("font-size", "16px").attr("alignment-baseline","middle"); 
+        svg.append("text").attr("x", 0).attr("y", 100).text("Trend from prior survey").style("font-size", "18px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 132).text("Down (>10% decrease)").style("font-size", "16px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 162).text("Same (Within 10%)").style("font-size", "16px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 192).text("Up (>10% increase)").style("font-size", "16px").attr("alignment-baseline","middle"); 
     } else if (expressed == "Trend_2018") {
         svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 8).style("fill", "#D8F2D0").style("stroke", "black").style("stroke-width", .5);
         svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 8).style("fill", "#74C476").style("stroke", "black").style("stroke-width", .5);
         svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 8).style("fill", "#145A32").style("stroke", "black").style("stroke-width", .5);
-        svg.append("text").attr("x", 7).attr("y", 100).text("Fire Trends").style("font-size", "20px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 132).text("Down").style("font-size", "16px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 162).text("Same").style("font-size", "16px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 192).text("Up").style("font-size", "16px").attr("alignment-baseline","middle"); 
+        svg.append("text").attr("x", 0).attr("y", 100).text("Trend from prior survey").style("font-size", "18px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 132).text("Down (>10% decrease)").style("font-size", "16px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 162).text("Same (Within 10%)").style("font-size", "16px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 192).text("Up (>10% increase)").style("font-size", "16px").attr("alignment-baseline","middle"); 
     } else if (expressed == "Trend_2019") {
         svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 8).style("fill", "#D8F2D0").style("stroke", "black").style("stroke-width", .5);
         svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 8).style("fill", "#74C476").style("stroke", "black").style("stroke-width", .5);
         svg.append("circle").attr("cx", 10).attr("cy", 190).attr("r", 8).style("fill", "#145A32").style("stroke", "black").style("stroke-width", .5);
-        svg.append("text").attr("x", 7).attr("y", 100).text("Fire Trends").style("font-size", "20px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 132).text("Down").style("font-size", "16px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 162).text("Same").style("font-size", "16px").attr("alignment-baseline","middle");
-        svg.append("text").attr("x", 30).attr("y", 192).text("Up").style("font-size", "16px").attr("alignment-baseline","middle"); 
+        svg.append("text").attr("x", 0).attr("y", 100).text("Trend from prior survey").style("font-size", "18px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 132).text("Down (>10% decrease)").style("font-size", "16px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 162).text("Same (Within 10%)").style("font-size", "16px").attr("alignment-baseline","middle");
+        svg.append("text").attr("x", 30).attr("y", 192).text("Up (>10% increase)").style("font-size", "16px").attr("alignment-baseline","middle"); 
     } else if (expressed == "LiabilityL") {
         svg.append("circle").attr("cx", 10).attr("cy", 130).attr("r", 8).style("fill", "#AFDBA8").style("stroke", "black").style("stroke-width", .5);
         svg.append("circle").attr("cx", 10).attr("cy", 160).attr("r", 8).style("fill", "#74C476").style("stroke", "black").style("stroke-width", .5);
@@ -671,8 +563,3 @@ function updateMap(attribute, usa) { // dont actually use usa
 
 })(); // last line of main.js
 
-// add pop-up with additional information (ex. link for fire councils)
-
-// add legend
-
-// add card panels to compare states.  model = eviction lab
