@@ -50,7 +50,6 @@ var attrcol = {
     Trend_2017: {"Down":"#b3cde0", "Same":"#005b96", "Up":"#011f4b"}, 
     Trend_2018: {"Down":"#b3cde0", "Same":"#005b96", "Up":"#011f4b"}, 
     Trend_2019: {"Down":"#b3cde0", "Same":"#005b96", "Up":"#011f4b"},
-
 }; */
 
 window.onload = setMap();
@@ -77,13 +76,22 @@ function setMap(){
     createLegend(expressed); // call under the updateMap instead. 
 
     $.getJSON("data/usaStates1.topojson", callback); // all data joined in topojson
-   
+    
+     /* var chartTitle = map.append("text") // use in the updateMap function to change with different menu selection
+        .attr("x", 10)
+        .attr("y", 30)
+        .attr("class", "chartTitle")
+        .text("" + expressed + ""); */ 
+    
         function callback(data){
         var usa = data;
 
         var americanStates = topojson.feature(usa, usa.objects.usaStates1).features;
+        //console.log(americanStates); //works
 
         setEnumerationUnits(americanStates, map, path); 
+        
+        //createDropdown(usa); // used dropdown menu as intermediate test of coloring fxn
 
         // update map when li items in accordion is clicked
         $(".attrli").on("click", function () {
@@ -99,26 +107,33 @@ function setMap(){
     $(function() {
         var Accordion = function(el, multiple) {
             this.el = el || {};
-            
+            // more then one submenu open?
             this.multiple = multiple || false;
         
             var dropdownlink = this.el.find('.dropdownlink');
-            
+            //if (('.attrli open').removeClass("open"));
             dropdownlink.on('click',
                             { el: this.el, multiple: this.multiple },
                             this.dropdown);
-               
+            // if (this.multiple) {
+            //     $el.find('.dropdownlink').prev($this).removeClass('attrli open')
+            //    }; 
+            // if (this.multiple) {
+            //     $el.find('.dropdownlink').prev($this).removeClass('open')
+            // };
+            //      $el.find('.dropdownlink').removeClass('attrli open')
+            // };                  
         };
 
-
+        //$el.find('.dropdownlink').prev($this).removeClass('open');
     
         Accordion.prototype.dropdown = function(e) {
         var $el = e.data.el,
             $this = $(this),
             //this is the ul.submenuItems
             $next = $this.next();
-        console.log($this);   
-        console.log($next); 
+        console.log($this);  // S.fn.init div.dropdownlink
+        console.log($next); //prevObject:S.fn.init(1)
     
         $next.slideToggle(); // this opens the submenu items
         $this.parent().toggleClass('open');  //commented out removes highlighting for all
@@ -141,7 +156,8 @@ function setEnumerationUnits(americanStates, map, path) {
         .enter()
         .append("path")
         .attr("class", function (d) {
-            return "states " + d.properties.name.replace(" ", "_");  //  .states selects all state elements
+            return "states " + d.properties.name.replace(" ", "_");  // "state "  so .states selects all state elements
+            //console.log("states " + d.properties.name.replace(".","")); 
         })
         .attr("id", function (d) {
             return d.properties.name.replace(" ", "_");
@@ -149,7 +165,10 @@ function setEnumerationUnits(americanStates, map, path) {
         .attr("d", path)  // added
         .style("fill", function(d){
             var value = d.properties[expressed];   
+            //console.log(value);
+            //console.log(expressed); 
             if(value) {
+                //console.log(attrcol[expressed][d.properties[expressed]]);
                 return attrcol[expressed][d.properties[expressed]];  
             } else {
                 return "#ccc";  
@@ -166,18 +185,29 @@ function setEnumerationUnits(americanStates, map, path) {
         .on("click", function(event, d){
             activate(d.properties);
         })
-
+        // .on("click", function(event, d){
+        //     deactivate(d.properties);
+        // });
+        //.on("mousemove", moveLabel)
         var desc = states.append("desc")
             .text('{"stroke": "black", "stroke-width": "0.8px"}') // upon mouseover, style returns to stroke #ccc
 };
 
-// infolabel on click
+// function that activates .on(click)
 function activate(props) {
     // this gets id of clicked state
     $(".states").click(function() {       
         stateName = this.id;    // assign id of clicked state to the global variable, referring to "id" in setEnumerationUnits 
         console.log(stateName);  // returns undefined
     });
+    
+/*     var propsName = props.name.replace(" ",".")
+    //console.log(propsName);
+    var selected = d3.selectAll("." + propsName).raise() // issue with both "Virginia" and "West Virginia" highlighting at the same time
+        .style("stroke", "white")
+        .style("stroke-width", "3"); */
+
+
 
     //remove (old) label info with click
     d3.select(".infoLabel")
@@ -272,7 +302,8 @@ function activate(props) {
     } else if (expressed == "PermitRequ") {
         labelAttribute = "Permit " + props[expressed] + " to burn";
     } else if (expressed == "FireCounci") {
-        if (props[expressed] == "Yes" ) {         
+        if (props[expressed] == "Yes" ) {   
+            //expressed = "fcName";         
             labelAttribute = " " + "<a href=\'" + link+"\'>"+ linktext + "</a>"; 
         } else if (props[expressed] == "No") {
             labelAttribute = "No state fire council";
@@ -280,23 +311,26 @@ function activate(props) {
             labelAttribute = " "+ linkInternal ;  // linkInternal links to interal page firecolinks.html
         };
     };
-
     //create label
     var infoLabel = d3.select(".map")
         .append("div")
         .attr("class", "infoLabel")
-        .attr("id", stateName);   
+        .attr("id", stateName);   // .attr("id", stateName + "_label");
             
+    //console.log(infoLabel);
     var labelTitle = infoLabel.html(labelName) 
         .attr("class", "labelTitle");
-
+    //console.log(labelTitle);
     var labelContent = labelTitle.append("div")
         .html(labelAttribute)
         .attr("class", "labelContent");
+    //console.log(labelContent);
+    
+  
 
 };
 
-// highlight on mouseover 
+//take most code from highight(props) and transfer to activate()
 function highlight(props){
     var propsName = props.name.replace(" ","_")   
     //console.log(propsName);
@@ -328,17 +362,23 @@ function dehighlight(props){
 
         return styleObject[styleName];
     };
-
+/*     //remove label info with mouseout 
+    d3.select(".infoLabel")
+        .remove(); 
+    d3.select(".labelTitle")
+        .remove(); 
+    d3.select(".labelContent")
+        .remove();    */
 };
 
-// create legend
+//code for da legend
 function createLegend(expressed) {
-
-    var svg = d3.select(".legend")   
-        .append("svg")  
+    //var legendText = expressed;
+    var svg = d3.select(".legend")   // scg   // .legendText 
+        .append("svg")  //"svg"
         .attr("width", 240)
         .attr("height", 400)
-        .attr("class", "svg");   
+        .attr("class", "svg");   //"svg"
     
     //if, else if statement to choose the legend to be shown that corresponds with expressed
     if (expressed == "Acres_2017") {  
@@ -458,6 +498,9 @@ function updateMap(attribute, usa) { // dont actually use usa
     //change the expressed attribute
     expressed = attribute;
 
+    //recreate the color scale
+    //var colorScale = makeColorScale(usa); // dont need makeColorScale; manual assignment
+
     //recolor enumeration units
     var states = d3.selectAll(".states ")
         .transition()
@@ -470,7 +513,15 @@ function updateMap(attribute, usa) { // dont actually use usa
                 return "#ccc";  
             }    
     });
-   
+
+  /*   //code for adding dynamic map title. comment out if you dont want
+    var map = d3.select(".map")
+    var chartTitle = map.append("text")
+        .attr("x", 10)
+        .attr("y", 30)
+        .attr("class", "chartTitle")
+        .text("" + expressed + "");  */
+    
     //update legend
     var legend = d3.select(".legend")
     var legendText = legend.append("text")
@@ -478,6 +529,7 @@ function updateMap(attribute, usa) { // dont actually use usa
         //.attr("x", 10)
         //.attr("y", 30)
         .attr("class", "legendText")
+        //.text("" + expressed + "")  // duplicate legend title
         .style ("fill", function(d) {
             var value = expressed;
                 if(value) {
@@ -488,6 +540,21 @@ function updateMap(attribute, usa) { // dont actually use usa
                 }
         });
     
+ 
+/*     var legendSvg = legend.append("svg")
+        .attr("class", "legendSvg")
+        .append("svg")
+        .attr("width", 240)
+        .attr("height", 400)  
+        .style ("fill", function(d) {
+        var value = expressed;
+            if(value) {
+                return createLegend(expressed);
+            } else {
+                return "#ccc";
+            }
+    }); */
+
 };
 
 })(); // last line of main.js
