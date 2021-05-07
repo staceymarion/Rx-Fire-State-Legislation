@@ -1,5 +1,5 @@
 /***** NAVBAR *****/
-
+/*///////////////*/
 .col-md-3 {
     padding-top: 20px;
     padding-right: 0px;
@@ -82,8 +82,9 @@
 
 }
 
-/*** JUMBOTRON ***/
 
+/*** JUMBOTRON ***/
+/*//////////////*/
 .jumbotron {
     text-align: left;
     color: rgba(255, 255, 255);
@@ -111,8 +112,9 @@
     color: rgb(231, 231, 231);
 }
 
-/*** Buttons ***/
 
+/*** BUTTONS ***/
+/*////////////*/
 .btn.btn-lg{
     font-family: "Krona One", sans-serif;
     font-size: 30px;
@@ -130,14 +132,17 @@
    font-size: 20px;
 }
 
-/** map **/
+
+/*** MAP ***/
+/*////////*/
 .states {
     stroke: black;
-    stroke-width: .75px;
+    stroke-width: .8px;
 }
 
-/*** Basic Text Styles ***/
 
+/*** BASIC TEXT STYLES ***/
+/*//////////////////////*/
 #about-world {
     max-height: 200px;
 }
@@ -252,24 +257,9 @@ tr:nth-child(3) {
 
 }
 
-/*** future styling for comparison cards ***/
 
-.card {
-    background-color: rgba(0, 54, 43, 0);
-    border-color: #cccccc;
-    border-width: 0px;
-    width: 100%;
-    font-size: small;
-    margin-top: 10%;
-    margin-bottom: 15%;
-}
-
-.card:hover {
-    border-color: #003a35;
-}
-    
-/*** accordian menu **/
-
+/*** ACCORDION MENU ***/
+/*///////////////////*/
 ul {
     list-style: none;
     float: left
@@ -312,7 +302,6 @@ ul.h2 {
     font-weight:normal;
     border-bottom: 1px solid #ccc;
     color: #0e6349; /*7FCDCD */
-    /* position: -webkit-sticky; /* needs to include -webkit */ 
     transition: all 0.5s ease-out;
 }
 
@@ -325,7 +314,6 @@ ul.h2 {
 .submenuItems {
     display: none;
     background: #b3cde000;
-    /*background: #92A8D1; */
 } 
 .submenuItems li {
       border-bottom: 1px solid #B6B6B6;
@@ -343,37 +331,23 @@ ul.h2 {
     background-color: #1b8d74; /* #ccdc39a4 */
 }
 
-/* label */
-/* .infolabel {
-    position: absolute;
-    height: auto;
-    width: 1200px;
-    color: #082e2e;
-    background-color: rgb(255, 255, 255);
-    border: solid thin #fff;
-    margin: 10px auto;
-    padding: 5px 10px;
-} */
 
+/*** LABEL ***/
+/*//////////*/
 .infolabel .labelName {
     margin: 0 20px 0 0;
     padding: 0;
-    /*: inline-block;*/
     display: table-header-group;
     line-height: 1em;
     text-align: center;
     font-size: 26px;
-    /*color: #b3cde081;*/
 } 
-
 
 .labelTitle {
     position: absolute;
     font-size: 30px;
     text-align: center;
     line-height: 125%;
-    /*background-color: #525252;*/
-    /*color:#fff;*/
     color: #082e2e;
     z-index: 2;
     width: 600px;
@@ -386,40 +360,10 @@ ul.h2 {
     font-size: 16px;
     line-height: 20px;
 }
-/** Label Stuff from Josh **/
-/* .infoLabel {
-    position: absolute;
-    height: auto;
-    float: right;
-    display: inline;
-    margin-right: -200px;
-    padding: 20px;
-}
 
-.labelTitle {
-    position: absolute;
-    font-family: 'Roboto Slab', serif;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 24px;
-    background-color: #525252;
-    color:#fff;
-    z-index: 2;
-    width: 175px;
-    padding: 10px;
-    margin-top: -300px;
-    margin-left: 760px;
-}
 
-.labelContent {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    font-weight: lighter;
-    line-height: 20px;
-    padding-top: 10px;
-} */
-
-/* chartTitle */
+/*** CHART TITLE ***/
+/*////////////////*/
 .chartTitle {
     position: absolute;
     height: 90px;
@@ -443,7 +387,6 @@ ul.h2 {
     margin: 20px 0; 
     padding: 0 0 0 0px;
     height: 100%;
-    /*background-color: rgb(124, 27, 27);*/
 }
 
 .legendText {
@@ -453,29 +396,14 @@ ul.h2 {
     height: 0px;
     width: 95%;
     color: #082e2e;
-    /*background-color: rgb(255, 255, 255);*/ /* this is a carryover element
-    /*border: solid thin #fff;*/
     margin: 0;
     padding: 15px 15px 15px 15px;
 }
-/* .legendImage {
-    background-color: #0e6349;
-    position:absolute;
-    font-size: 15px;
-    display:block;
-    height: 90px;
-    width: 95%;
-    color: #082e2e;
-    margin-top: 90px;
-    padding: 15px 15px 15px 15px;
-} */
-
 
 .svg {
     position: absolute;
     border-radius: 5px;
     vertical-align: top;
-    /*background-color: #ffffff;*/
     font-size: 15px;
     display:inline-block;
     width: 95%;
@@ -483,3 +411,22 @@ ul.h2 {
     margin-top: 0px;  /* remove margin-top for opaque legend to cover */
     padding: 15px 15px 15px 15px;
 }
+
+
+/**************** END OF STYLES FOR WEBSITE ****************/
+
+
+/*** future styling for comparison cards ***/
+/* .card {
+    background-color: rgba(0, 54, 43, 0);
+    border-color: #cccccc;
+    border-width: 0px;
+    width: 100%;
+    font-size: small;
+    margin-top: 10%;
+    margin-bottom: 15%;
+}
+
+.card:hover {
+    border-color: #003a35;
+} */

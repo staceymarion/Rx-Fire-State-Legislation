@@ -74,7 +74,7 @@ function setMap(){
     var path = d3.geoPath() //path generator
         .projection(projection);
     
-    createLegend(expressed); // call under the updateMap instead. 
+    createLegend(expressed);  
 
     $.getJSON("data/usaStates1.topojson", callback); // all data joined in topojson
    
@@ -106,11 +106,8 @@ function setMap(){
             
             dropdownlink.on('click',
                             { el: this.el, multiple: this.multiple },
-                            this.dropdown);
-               
+                            this.dropdown);    
         };
-
-
     
         Accordion.prototype.dropdown = function(e) {
         var $el = e.data.el,
@@ -121,7 +118,7 @@ function setMap(){
         console.log($next); 
     
         $next.slideToggle(); // this opens the submenu items
-        $this.parent().toggleClass('open');  //commented out removes highlighting for all
+        $this.parent().toggleClass('open'); 
     
         if(!e.data.multiple) {
             //show only one menu at the same time
@@ -131,10 +128,10 @@ function setMap(){
         };
     
         var accordion = new Accordion($('.accordion-menu'), false); 
-
     });    
 };
 
+//function to add color to states
 function setEnumerationUnits(americanStates, map, path) {
     var states = map.selectAll(".states")
         .data(americanStates)
@@ -176,7 +173,6 @@ function activate(props) {
     // this gets id of clicked state
     $(".states").click(function() {       
         stateName = this.id;    // assign id of clicked state to the global variable, referring to "id" in setEnumerationUnits 
-        console.log(stateName);  // returns undefined
     });
 
     //remove (old) label info with click
@@ -187,12 +183,14 @@ function activate(props) {
     d3.select(".labelContent")
         .remove();  
 
+    //variables for label creation
     var labelName = props.name;
     var labelAttribute;    
     var link = props["Link"];
     var linktext = props["fcName"];
     var linkInternal = linktext.link("firecolinks.html");
 
+    //if, else if statements to makeup label content
     if (expressed == "Acres_2017") {
         if (props[expressed] == 1) {
             labelAttribute = "<1,000 forestry acres burned in 2017";
@@ -299,17 +297,15 @@ function activate(props) {
 // highlight on mouseover 
 function highlight(props){
     var propsName = props.name.replace(" ","_")   
-    //console.log(propsName);
-    var selected = d3.selectAll("." + propsName).raise() // issue with both "Virginia" and "West Virginia" highlighting at the same time
+    
+    var selected = d3.selectAll("." + propsName).raise() 
         .style("stroke", "white")
-        .style("stroke-width", "3");
-    //console.log(props.name);           
-    //console.log(selected); 
-     
+        .style("stroke-width", "3");  
 }; 
 
+//dehighlighting with mouseout
 function dehighlight(props){
-    // add something like if != selected
+    
     var propsName = props.name.replace(" ","_")
     var selected = d3.selectAll("." + propsName)
         .style("stroke", function(){
@@ -328,7 +324,6 @@ function dehighlight(props){
 
         return styleObject[styleName];
     };
-
 };
 
 // create legend
@@ -449,8 +444,7 @@ function createLegend(expressed) {
         svg.append("text").attr("x", 30).attr("y", 132).text("Yes").style("font-size", "16px").attr("alignment-baseline","middle");
         svg.append("text").attr("x", 30).attr("y", 162).text("No").style("font-size", "16px").attr("alignment-baseline","middle");
         svg.append("text").attr("x", 30).attr("y", 192).text("Regional").style("font-size", "16px").attr("alignment-baseline","middle");
-    };
-    
+    }; 
 };
 
 //dropdown change event handler
@@ -474,9 +468,6 @@ function updateMap(attribute, usa) { // dont actually use usa
     //update legend
     var legend = d3.select(".legend")
     var legendText = legend.append("text")
-        //.append("legendText")
-        //.attr("x", 10)
-        //.attr("y", 30)
         .attr("class", "legendText")
         .style ("fill", function(d) {
             var value = expressed;
@@ -486,9 +477,7 @@ function updateMap(attribute, usa) { // dont actually use usa
                 } else {
                     return "#ccc";
                 }
-        });
-    
+        }); 
 };
 
 })(); // last line of main.js
-
